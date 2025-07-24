@@ -11,11 +11,11 @@ const AuthLayout = ({children}) => {
         {children}
     </div>
 
-    <div className=' flex absolute sm:block w-[40%] lg:w-[30%] xl:w-[45%]  h-screen bg-blue-100 bg-auth-bg-img bg-cover bg-center bg-no-repeat overflow-hidden right-0'>
+    <div className=' flex absolute sm:block w-[40%] lg:w-[30%] xl:w-[45%]  h-screen bg-blue-100 bg-auth-bg-img bg-cover bg-center bg-no-repeat overflow-hidden right-0 '>
         <div className='w-[50%] max-w-68 aspect-square rounded-[40px] bg-blue-500  absolute'/>
         <div className='w-[50%] max-w-68 aspect-square rounded-[40px] border-[20px] border-blue-950 absolute top-[30%] right-0'/>
         <div className='w-[50%] max-w-68 aspect-square  rounded-[40px] bg-blue-500 absolute -bottom-20 '/>
-        <div className='grid grid-cols-1 z-20 p-5'>
+        <div className='relative justify-center z-20 p-5'>
             <StatsInfoCard
             icon={<LucideTrendingUpDown size={55} className='bg-primary rounded-4xl p-3'/>}
             label="Track your Income & Expenses"

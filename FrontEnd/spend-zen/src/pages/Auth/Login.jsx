@@ -31,7 +31,7 @@ const Login = () => {
 
   return (
     <AuthLayout>
-        <div className='w-[45%] lg:w-[40%] sm:w-[50%]'>
+        <div className='w-[45%] lg:w-[70%] sm:w-[50%]'>
         <h3 className='text-xl font-semibold text-black'>Welcome back</h3>
             <p className='text-xs text-slate-700 mt-[5px] mb-6'>
                 please enter your details to log in

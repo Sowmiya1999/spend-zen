@@ -8,8 +8,8 @@ const Input = ({value,label,type,placeholder,onChange}) => {
         setShowPassword(!showPassword);
     }
   return (
-    <div>
-        <label className='text-lg text-slate-800'>{label}</label>
+    <div className='w-full'>
+        <label className='text-sm text-slate-800'>{label}</label>
         <div className='input-box'>
             <input 
             type={type == 'password' ? showPassword ? 'text' : 'password' : type}
