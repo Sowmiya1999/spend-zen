@@ -10,6 +10,7 @@ const SignUp = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   const [error, setError] = useState("");
   
@@ -18,16 +19,29 @@ const SignUp = () => {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-     if(!validateEmail(email)){
+     
+            if(!fullName){
+              setError("Please enter your fullName");
+              return;
+            }
+            
+            if(!validateEmail(email)){
                 setError("Please Enter a valid Email Address");
                 return;
             }
+
     
             if(!password || password.length<8){
                 setError("Please provide valid password");
                 return;
             }
-          
+
+            if(!termsAccepted){
+              setError("Please accept the terms and conditions");
+              return
+            }
+          setError(null);
+      //  alert("signup")   
   };
   return (
     <AuthLayout>
@@ -65,6 +79,18 @@ const SignUp = () => {
               placeholder="Enter your password"
               onChange={({ target }) => setPassword(target.value)}
             />
+          <div>
+              <input
+           value={termsAccepted}
+           onChange={() => setTermsAccepted(!termsAccepted)}
+           type="checkbox"
+           className=""
+           />
+          <span className="ml-2">I have read and accepted the </span>
+          <br/>
+            <Link to="/termsAndConditions" target="_blank" className="ml-5 text-primary underline">Terms & Conditions</Link>
+          </div>
+         
             {/* </div> */}
             </div>
               {error && <p className="text-red-500 text-sm">{error}</p>}

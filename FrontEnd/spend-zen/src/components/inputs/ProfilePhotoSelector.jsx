@@ -1,30 +1,30 @@
-import { ImagePlusIcon, UserPlusIcon, UserRoundPlusIcon } from 'lucide-react';
+import {  UserRoundPlusIcon } from 'lucide-react';
 import React, { useRef, useState } from 'react'
-import {LuUser, LuUpload, LuTrash} from 'react-icons/lu'
+import { LuTrash} from 'react-icons/lu'
 
 const ProfilePhotoSelector = ({image, setProfilePic}) => {
-    const inputRef = useRef(null)
+    const inputRef = useRef(null) // used for creating reference of input
     const [previewUrl, setPreviewUrl] = useState(null);
 
     const handleImageChange = (e) =>{
         const file = e.target.files[0];
 
         if(file){
-            setPreviewUrl(file)
-        }
-
-        const preview = URL.createObjectURL(file);
+        const preview = URL.createObjectURL(file); // this creates a temp
         setPreviewUrl(preview);
-        setProfilePic(previewUrl)
+        setProfilePic(preview);
+        }
+        e.target.value='';
+      
     }
 
-    const handleRemoveImage = () =>{
+    const handleRemoveImage = (e) =>{
         setProfilePic(null);
-        setPreviewUrl(null)
+        setPreviewUrl(null);
     }
 
     const onChooseFile = () =>{
-        inputRef.current.click();
+        inputRef.current.click() // used for triggering file picker programmatically
         
     }
   return (
