@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors"; // package used for allowing frontend to access backend
 import path from "path";
 import { connectToMongoDB } from "./config/dbConnection.js";
+import authRoutes from "./routes/authRoutes.js"
 
 
 const app = express();
