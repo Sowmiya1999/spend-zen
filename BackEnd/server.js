@@ -3,8 +3,9 @@ dotenv.config();
 import express from "express";
 import cors from "cors"; // package used for allowing frontend to access backend
 import path from "path";
-import { connectToMongoDB } from "./config/dbConnection.js";
-import authRoutes from "./routes/authRoutes.js";
+import { connectToMongoDB } from "./src/config/dbConnection.js";
+import authRoutes from "./src/routes/authRoutes.js";
+import incomeRoutes from "./src/routes/incomeRoutes.js"
 import { fileURLToPath } from "url";
 
 
@@ -24,7 +25,7 @@ connectToMongoDB()
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/expense", authRoutes);
-app.use("/api/v1/income", authRoutes);
+app.use("/api/v1/income", incomeRoutes);
 app.use("/api/v1/user", authRoutes);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
