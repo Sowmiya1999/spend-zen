@@ -1,6 +1,7 @@
 import {
   INPUT_NOT_FOUND_ERROR_MESSAGE,
-  REGISTRATION_FAILED_ERROR_MESSAGE
+  REGISTRATION_FAILED_ERROR_MESSAGE,
+  USER_FETCH_FAILED_ERROR_MESSAGE
 } from "../common/constants.js";
 import AuthService from "../services/auth.service.js";
 
@@ -48,7 +49,18 @@ class AuthController {
   };
 
 
-  getUserInfo = async (req, res) => {};
+  getUserInfo = async (req, res) => {
+    try{
+      console.log(`AuthController.getUserInfo is called req: ${req}`);
+
+      return await this.authService.getUserInfoService(req.user._id,res);
+
+    }
+    catch(err){
+      console.log(`AuthController.getUserInfo produced error: ${err}`);
+       return res.status(500).json({message:USER_FETCH_FAILED_ERROR_MESSAGE, error: err});
+    }
+  };
 }
 
 export default AuthController;
