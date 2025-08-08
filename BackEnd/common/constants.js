@@ -7,6 +7,7 @@ export const USER_FETCH_FAILED_ERROR_MESSAGE = "User Fetch Failed";
 export const USER_DATA_NOT_FOUND = "User Data Not Found";
 export const UNAUTHORIZED_TOKEN_NOT_FOUND = "UnAuthorized Token Not Found";
 export const TOKEN_VERIFICATION_FAILED_MESSAGE = "Token Verification Failed";
+export const NO_FILE_UPLOADED = "No File Uploaded";
 
 // success codes
 export const LOGIN_SUCCESS_MESSAGE = "Login Successfully";
