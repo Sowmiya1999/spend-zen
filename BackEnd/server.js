@@ -30,7 +30,7 @@ app.use("/api/v1/user", authRoutes);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("api/v1/auth/uploads", express.static(path.join(__dirname, "uploads")));
 
 const port = process.env.PORT || 8080;
 
