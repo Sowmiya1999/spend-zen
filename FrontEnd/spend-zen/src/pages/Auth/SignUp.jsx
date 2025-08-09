@@ -19,12 +19,13 @@ const SignUp = () => {
 
   const handleSignUp = (e) => {
     e.preventDefault();
+    let profileImageUrl = '';
      
             if(!fullName){
               setError("Please enter your fullName");
               return;
             }
-            
+
             if(!validateEmail(email)){
                 setError("Please Enter a valid Email Address");
                 return;
