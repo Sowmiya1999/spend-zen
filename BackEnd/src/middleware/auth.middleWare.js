@@ -18,6 +18,7 @@ class AuthMiddleWare{
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
              console.log(`AuthMiddleWare.protect getting userData by id with data: ${JSON.stringify(decoded.id)}`);
             req.user = await this.userRepository.findUserById(decoded.id);
+            req.userId = decoded.id;
             next();
 
         }

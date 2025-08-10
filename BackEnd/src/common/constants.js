@@ -29,6 +29,7 @@ export const INCOME_DELETION_FAILED_ERROR_MESSAGE = "Income Deletion Failed";
 export const DOWNLOAD_INCOME_EXCEL_FAILED_ERROR_MESSAGE = "Income Excel Download Failed";
 
 
+
 // success codes
 export const SIGNUP_SUCCESS_MESSAGE = "Signup Successfully";
 
@@ -43,3 +44,5 @@ export const INCOME_FETCHED_SUCCESS_MESSAGE = "Income Fetched Successfully";
 export const INCOME_DELETED_SUCCESS_MESSAGE = "Income Deleted Successfully";
 
 export const DOWNLOAD_INCOME_EXCEL_SUCCESS_MESSAGE = "Income Excel Downloaded Successfully";
+
+export const INCOME_ADDED_SUCCESS_MESSAGE = "Income Added Successfully";

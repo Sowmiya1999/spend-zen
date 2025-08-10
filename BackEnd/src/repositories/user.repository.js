@@ -1,4 +1,4 @@
-import User from "../models/user.js";
+import User from "../models/user.model.js";
 class UserRepository{
  async checkIsUserExistByEmail(email){
     try{

@@ -1,14 +1,23 @@
-import { ADD_INCOME_FAILED_ERROR_MESSAGE, DOWNLOAD_INCOME_EXCEL_FAILED_ERROR_MESSAGE, GET_INCOME_FAILED_ERROR_MESSAGE, INCOME_DELETION_FAILED_ERROR_MESSAGE } from "../common/constants.js"
+import { ADD_INCOME_FAILED_ERROR_MESSAGE, DOWNLOAD_INCOME_EXCEL_FAILED_ERROR_MESSAGE, DOWNLOAD_INCOME_EXCEL_SUCCESS_MESSAGE, GET_INCOME_FAILED_ERROR_MESSAGE, INCOME_ADDED_SUCCESS_MESSAGE, INCOME_DELETED_SUCCESS_MESSAGE, INCOME_DELETION_FAILED_ERROR_MESSAGE, INCOME_FETCHED_SUCCESS_MESSAGE, INPUT_NOT_FOUND_ERROR_MESSAGE } from "../common/constants.js"
+import IncomeService from "../services/income.service.js";
 
 class IncomeController{
     constructor(){
-
+        this.incomeService = new IncomeService()
     }
 
     addIncome = async (req,res) =>{
         try{
               console.log(`IncomeController.addIncome`)
               console.log(`IncomeController.addIncome is called`);
+              const {source , icon, amount, date} = req.body;
+
+              if(!source ||!amount || !date ){
+                return res.status(400).json({message:INPUT_NOT_FOUND_ERROR_MESSAGE})
+              }
+              let incomeData = await this.incomeService.addIncomeService(req.userId,source,icon,date,amount);
+
+              return res.status(200).json({message:INCOME_ADDED_SUCCESS_MESSAGE, income:incomeData})
 
         }
         catch(err){
@@ -21,6 +30,8 @@ class IncomeController{
         try{
               console.log(`IncomeController.getAllIncome`)
               console.log(`IncomeController.getAllIncome is called`);
+              const incomeData= await this.incomeService.getAllIncomeService(req.userId);
+              return res.status(200).json({message:INCOME_FETCHED_SUCCESS_MESSAGE, incomeData: incomeData});
 
         }
         catch(err){
@@ -33,6 +44,8 @@ class IncomeController{
         try{
               console.log(`IncomeController.deleteIncome`)
               console.log(`IncomeController.deleteIncome is called`);
+              await this.incomeService.deleteIncomeService(req.userId, req.params.id);
+              return res.status(200).json({message: INCOME_DELETED_SUCCESS_MESSAGE})
 
         }
         catch(err){
@@ -45,6 +58,9 @@ class IncomeController{
         try{
               console.log(`IncomeController.downloadIncomeExcel`)
               console.log(`IncomeController.downloadIncomeExcel is called`);
+              await this.incomeService.downloadIncomeExcelService(req.userId);
+              res.download('income_details.xlsx');
+            //   res.status(200).json({message: DOWNLOAD_INCOME_EXCEL_SUCCESS_MESSAGE})
 
         }
         catch(err){

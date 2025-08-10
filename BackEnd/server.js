@@ -7,6 +7,7 @@ import { connectToMongoDB } from "./src/config/dbConnection.js";
 import authRoutes from "./src/routes/authRoutes.js";
 import incomeRoutes from "./src/routes/incomeRoutes.js"
 import { fileURLToPath } from "url";
+import expenseRoutes from "./src/routes/expenseRoutes.js"
 
 
 const app = express();
@@ -24,13 +25,13 @@ app.use(express.json());
 connectToMongoDB()
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/expense", authRoutes);
+app.use("/api/v1/expense", expenseRoutes);
 app.use("/api/v1/income", incomeRoutes);
 app.use("/api/v1/user", authRoutes);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-app.use("api/v1/auth/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 const port = process.env.PORT || 8080;
 
