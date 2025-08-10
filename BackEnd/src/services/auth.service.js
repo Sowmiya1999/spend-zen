@@ -20,33 +20,24 @@ class AuthService {
      generateJWTToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 };
-    signUpService = async (fullName, email, password, profileImageUrl, res) => {
+    signUpService = async (fullName, email, password, profileImageUrl) => {
         try {
             const isUserExist = await this.userRepository.checkIsUserExistByEmail(email);
             if (isUserExist) {
-                return res
-                    .status(400)
-                    .json({ message: USER_ALREADY_EXIST_ERROR_MESSAGE });
+                  throw new Error(USER_ALREADY_EXIST_ERROR_MESSAGE);
             }
 
-            const user = await this.userRepository.createUser({
+            return await this.userRepository.createUser({
                 fullName,
                 email,
                 password,
                 profileImageUrl,
             });
 
-            res
-                .status(201)
-                .json({ id: user._id, user, token: this.generateJWTToken(user._id) });
+          
         } catch (error) {
             console.log(`AuthService.sigUpService produced an error: ${error}`);
-            return res
-                .status(500)
-                .json({
-                    message: REGISTRATION_FAILED_ERROR_MESSAGE,
-                    error: error.message,
-                });
+            throw error;
         }
     };
 
@@ -55,16 +46,12 @@ class AuthService {
             const user = await this.userRepository.loginUser(email, password);
             if (!user) {
                 console.log(`AuthService.loginService login failed`);
-                return res
-                    .status(400)
-                    .json({ message: INCORRECT_CREDENTIALS_PROVIDED_ERROR_MESSAGE });
+                throw new Error(INCORRECT_CREDENTIALS_PROVIDED_ERROR_MESSAGE );
             }
-            return res.status(200).json({ message: LOGIN_SUCCESS_MESSAGE, id: user._id,user:user,token: this.generateJWTToken(user._id) });
+           return user;
         } catch (err) {
             console.log(`AuthService.login produced error: ${err}`);
-            return res
-                .status(500)
-                .json({ message: LOGIN_FAILED_ERROR_MESSAGE, error: err.message });
+           throw err;
         }
     }
 
@@ -76,15 +63,15 @@ class AuthService {
 
             if(!userData){
                 console.log(`Authservice.getUserinforService user data not found`)
-                return res.status(404).json({message:USER_DATA_NOT_FOUND});
+                throw new Error(USER_DATA_NOT_FOUND);
             }
-            return res.status(200).json({message: USER_DATA_FETCHED_SUCCESSFULLY, user: userData, id: userData._id});
+          return userData;
         }
         catch(err){
             console.log(`authService.getUserInforService produced error: ${err}`);
-            return res.status(500).json({message:USER_FETCH_FAILED_ERROR_MESSAGE,error:err});
-        }
+            throw err;
     }
+}
 }
 
 export default AuthService;

@@ -1,5 +1,7 @@
 import {
   INPUT_NOT_FOUND_ERROR_MESSAGE,
+  LOGIN_FAILED_ERROR_MESSAGE,
+  LOGIN_SUCCESS_MESSAGE,
   REGISTRATION_FAILED_ERROR_MESSAGE,
   USER_FETCH_FAILED_ERROR_MESSAGE
 } from "../common/constants.js";
@@ -19,25 +21,28 @@ class AuthController {
     }
 
     try {
-      return await this.authService.signUpService(
+      let user= await this.authService.signUpService(
         fullName,
         email,
         password,
-        profileImageUrl,
-        res
+        profileImageUrl
       );
+       return res
+                .status(201)
+                .json({ id: user._id, user, token: this.authService.generateJWTToken(user._id) });
     } catch (error) {
       console.log(`authController.sigUp produced an error: ${error}`);
       return res
         .status(500)
         .json({
-          message: REGISTRATION_FAILED_ERROR_MESSAGE,
-          error: error.message,
+          message: error.message || REGISTRATION_FAILED_ERROR_MESSAGE,
+          error: error,
         });
     }
   };
 
   login = async (req, res) => {
+    try{
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -45,7 +50,18 @@ class AuthController {
       return res.status(400).json({ message: INPUT_NOT_FOUND_ERROR_MESSAGE });
     }
 
-    return await this.authService.loginService(email, password, res);
+     const user = await this.authService.loginService(email, password);
+      return res.status(200).json({ message: LOGIN_SUCCESS_MESSAGE, id: user._id,user:user,token: this.authService.generateJWTToken(user._id) });
+  }
+    catch (error) {
+      console.log(`authController.sigUp produced an error: ${error}`);
+      return res
+        .status(500)
+        .json({
+          message: error.message || LOGIN_FAILED_ERROR_MESSAGE,
+          error: error,
+        });
+    }
   };
 
 
@@ -53,8 +69,8 @@ class AuthController {
     try{
       console.log(`AuthController.getUserInfo is called req: ${req}`);
 
-      return await this.authService.getUserInfoService(req.user._id,res);
-
+      const user = await this.authService.getUserInfoService(req.userId);
+        return res.status(200).json({message: USER_DATA_FETCHED_SUCCESSFULLY, user: user, id: user._id});
     }
     catch(err){
       console.log(`AuthController.getUserInfo produced error: ${err}`);
