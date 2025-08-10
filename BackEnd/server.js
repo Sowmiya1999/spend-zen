@@ -4,10 +4,10 @@ import express from "express";
 import cors from "cors"; // package used for allowing frontend to access backend
 import path from "path";
 import { connectToMongoDB } from "./src/config/dbConnection.js";
-import authRoutes from "./src/routes/authRoutes.js";
-import incomeRoutes from "./src/routes/incomeRoutes.js"
+import authRoutes from "./src/routes/auth.routes.js";
+import incomeRoutes from "./src/routes/income.routes.js"
 import { fileURLToPath } from "url";
-import expenseRoutes from "./src/routes/expenseRoutes.js"
+import expenseRoutes from "./src/routes/expense.routes.js"
 
 
 const app = express();

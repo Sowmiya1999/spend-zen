@@ -1,3 +1,5 @@
+import xlsx from 'xlsx';
+
 export const convertToExcel = async (jsonData, workSheetName, workBookName) =>{
   const wb = xlsx.utils.book_new(); // creates new excel workbook
   const ws = xlsx.utils.json_to_sheet(jsonData); // converts json data into worksheet

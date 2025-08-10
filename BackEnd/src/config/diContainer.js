@@ -1,7 +1,7 @@
 import AuthController from "../controllers/auth.controller.js";
 import ExpenseController from "../controllers/expense.controller.js";
 import IncomeController from "../controllers/income.controller.js";
-import AuthMiddleWare from "../middleware/auth.middleWare.js";
+import AuthMiddleWare from "../middleware/auth.middleware.js";
 
  export const authMiddleware = new AuthMiddleWare();
  export const incomeController = new IncomeController();

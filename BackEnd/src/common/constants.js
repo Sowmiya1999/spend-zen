@@ -6,8 +6,9 @@ export const USER_ALREADY_EXIST_ERROR_MESSAGE = "User Already Exist";
 export const REGISTRATION_FAILED_ERROR_MESSAGE = "Registration Failed";
 
 //login
-export const LOGIN_FAILED_ERROR_MESSAGE = "Login Failed"
-export const INCORRECT_CREDENTIALS_PROVIDED_ERROR_MESSAGE = "Incorrect Credentials provided";
+export const LOGIN_FAILED_ERROR_MESSAGE = "Login Failed";
+export const INCORRECT_CREDENTIALS_PROVIDED_ERROR_MESSAGE =
+  "Incorrect Credentials provided";
 
 //getUserInfo
 export const USER_FETCH_FAILED_ERROR_MESSAGE = "User Fetch Failed";
@@ -26,9 +27,22 @@ export const GET_INCOME_FAILED_ERROR_MESSAGE = "Income Data Fetch Failed";
 export const INCOME_DELETION_FAILED_ERROR_MESSAGE = "Income Deletion Failed";
 
 //downloadIncomeExcel
-export const DOWNLOAD_INCOME_EXCEL_FAILED_ERROR_MESSAGE = "Income Excel Download Failed";
+export const DOWNLOAD_INCOME_EXCEL_FAILED_ERROR_MESSAGE =
+  "Income Excel Download Failed";
 
+//addExpense
+export const ADD_EXPENSE_FAILED_ERROR_MESSAGE = "Add Expense Failed";
 
+//getAllExpense
+export const GET_ALL_EXPENSES_FAILED_ERROR_MESSAGE =
+  "Expense Data Fetch Failed";
+
+//deleteExpense
+export const DELETE_EXPENSE_FAILED_ERROR_MESSAGE = "Expense Deletion Failed";
+
+//downloadExpenseExcel
+export const DOWNLOAD_EXPENSE_EXCEL_FAILED_ERROR_MESSAGE =
+  "Expense Excel Download Failed";
 
 // success codes
 export const SIGNUP_SUCCESS_MESSAGE = "Signup Successfully";
@@ -37,12 +51,19 @@ export const LOGIN_SUCCESS_MESSAGE = "Login Successfully";
 
 export const USER_DATA_FETCHED_SUCCESSFULLY = "User Data Fetched Successfully";
 
-export const INCOME_ADD_SUCCESS_MESSAGE = "Income Added Successfully";
-
 export const INCOME_FETCHED_SUCCESS_MESSAGE = "Income Fetched Successfully";
 
 export const INCOME_DELETED_SUCCESS_MESSAGE = "Income Deleted Successfully";
 
-export const DOWNLOAD_INCOME_EXCEL_SUCCESS_MESSAGE = "Income Excel Downloaded Successfully";
+export const DOWNLOAD_INCOME_EXCEL_SUCCESS_MESSAGE =
+  "Income Excel Downloaded Successfully";
 
 export const INCOME_ADDED_SUCCESS_MESSAGE = "Income Added Successfully";
+
+export const EXPENSE_ADD_SUCCESS_MESSAGE = "Expense Added Successfully";
+
+export const EXPENSES_FETCHED_SUCCESS_MESSAGE = "Expense Fetched Successfully";
+
+export const DOWNLOAD_EXPENSE_SUCCESS_MESSAGE = "Expense Excel Downloaded Successfully";
+
+export const DELETE_EXPENSE_SUCCESS_MESSAGE = "Expense Deleted Successfully";

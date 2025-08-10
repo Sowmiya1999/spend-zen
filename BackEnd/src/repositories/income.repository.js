@@ -8,13 +8,15 @@ class IncomeRepository{
 
     }
 
-    async createOrUpdateIncome(userId,icon,source, amount, date){
+    async createOrUpdateIncome(userId,icon,source, amount, date, cashCategory, note){
         try{
             const newIncome = new Income({
                 userId,
                 icon,
                 source,
                 amount,
+                cashCategory,
+                note,
                 date: new Date(date)
             })
 
