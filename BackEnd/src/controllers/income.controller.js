@@ -10,14 +10,14 @@ class IncomeController{
         try{
               console.log(`IncomeController.addIncome`)
               console.log(`IncomeController.addIncome is called`);
-              const {source , icon, amount, date} = req.body;
+              const {source , icon, amount, date, note, cashCategory} = req.body;
 
               if(!source ||!amount || !date ){
                 return res.status(400).json({message:INPUT_NOT_FOUND_ERROR_MESSAGE})
               }
-              let incomeData = await this.incomeService.addIncomeService(req.userId,source,icon,date,amount);
+              let incomeData = await this.incomeService.addIncomeService(req.userId,source,icon,date,amount, cashCategory, note);
 
-              return res.status(200).json({message:INCOME_ADDED_SUCCESS_MESSAGE, income:incomeData})
+              return res.status(200).json({message:INCOME_ADDED_SUCCESS_MESSAGE, data:incomeData})
 
         }
         catch(err){
@@ -31,7 +31,7 @@ class IncomeController{
               console.log(`IncomeController.getAllIncome`)
               console.log(`IncomeController.getAllIncome is called`);
               const incomeData= await this.incomeService.getAllIncomeService(req.userId);
-              return res.status(200).json({message:INCOME_FETCHED_SUCCESS_MESSAGE, incomeData: incomeData});
+              return res.status(200).json({message:INCOME_FETCHED_SUCCESS_MESSAGE, data: incomeData});
 
         }
         catch(err){
@@ -60,8 +60,7 @@ class IncomeController{
               console.log(`IncomeController.downloadIncomeExcel is called`);
               await this.incomeService.downloadIncomeExcelService(req.userId);
               res.download('income_details.xlsx');
-            //   res.status(200).json({message: DOWNLOAD_INCOME_EXCEL_SUCCESS_MESSAGE})
-
+              
         }
         catch(err){
             console.log(`IncomeController.downloadIncomeExcel produced error: ${err}`)
