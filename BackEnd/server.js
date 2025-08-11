@@ -8,6 +8,7 @@ import authRoutes from "./src/routes/auth.routes.js";
 import incomeRoutes from "./src/routes/income.routes.js"
 import { fileURLToPath } from "url";
 import expenseRoutes from "./src/routes/expense.routes.js"
+import dashboardRouter from "./src/routes/dashboard.routes.js";
 
 
 const app = express();
@@ -27,7 +28,7 @@ connectToMongoDB()
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/expense", expenseRoutes);
 app.use("/api/v1/income", incomeRoutes);
-app.use("/api/v1/user", authRoutes);
+app.use("/api/v1/dashboard", dashboardRouter);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
