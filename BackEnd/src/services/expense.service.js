@@ -1,3 +1,4 @@
+import { EXPENSE_EXCEL_WORKBOOK_NAME, EXPENSE_EXCEL_WORKSHEET_NAME } from "../common/constants.js";
 import { convertToExcel } from "../common/helper.js";
 import Expense from "../models/expense.model.js";
 import ExpenseRepository from "../repositories/expense.repository.js";
@@ -69,7 +70,7 @@ class ExpenseService{
                 Amount: data.amount,
 
             }))
-             return await convertToExcel(expenseDataJson, "Expense", "expense_details.xlsx");
+             return await convertToExcel(expenseDataJson, EXPENSE_EXCEL_WORKSHEET_NAME, EXPENSE_EXCEL_WORKBOOK_NAME);
 
         }
 

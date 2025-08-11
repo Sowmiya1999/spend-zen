@@ -1,5 +1,5 @@
 import { convertToExcel } from "../common/helper.js";
-import { INCOME_DELETION_FAILED_ERROR_MESSAGE } from "../common/constants.js";
+import { INCOME_DELETION_FAILED_ERROR_MESSAGE, INCOME_EXCEL_WORKBOOK_NAME, INCOME_EXCEL_WORKSHEET_NAME } from "../common/constants.js";
 import IncomeRepository from "../repositories/income.repository.js";
 
 class IncomeService{
@@ -57,7 +57,7 @@ class IncomeService{
                 Amount: data.amount,
                 Date: data.date
             }));
-            await convertToExcel(incomeDataMap, "Income", "income_details.xlsx");
+            await convertToExcel(incomeDataMap, INCOME_EXCEL_WORKSHEET_NAME, INCOME_EXCEL_WORKBOOK_NAME);
 
             return;
 

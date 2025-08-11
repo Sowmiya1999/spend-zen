@@ -67,3 +67,14 @@ export const EXPENSES_FETCHED_SUCCESS_MESSAGE = "Expense Fetched Successfully";
 export const DOWNLOAD_EXPENSE_SUCCESS_MESSAGE = "Expense Excel Downloaded Successfully";
 
 export const DELETE_EXPENSE_SUCCESS_MESSAGE = "Expense Deleted Successfully";
+
+export const EXPENSE_EXCEL_WORKBOOK_NAME = "expense_details.xlsx";
+
+export const INCOME_EXCEL_WORKBOOK_NAME = "income_details.xlsx";
+
+export const INCOME_EXCEL_WORKSHEET_NAME = "Income";
+
+export const EXPENSE_EXCEL_WORKSHEET_NAME = "Expense";
+
+
+
