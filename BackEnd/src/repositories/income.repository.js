@@ -55,6 +55,48 @@ class IncomeRepository{
             return false;
         }
     }
+
+    async getAggregatedIncomeData(userId){
+        try{
+            console.log(`incomeRepository.getAggregatedIncomeData is called`);
+            return await Income.aggregate(
+                [
+                    {
+                        $match: {userId: userId}
+                    },
+                    {
+                        $group: { _id: null, total: {$sum: "$amount"}}
+                    }
+                ]
+            )
+        }
+        catch(err){
+            console.log(`incomeRepository.getAggregatedIncomeData produced error: ${err}`)
+        }
+    }
+
+     async getIncomeDataForProvidedDays(userId, noOfDays){
+        try{
+            console.log(`incomeRepository.getIncomeDataForProvidedDays is called`);
+            return await Income.find({userId, date: { $gte: (Date.now() - noOfDays *24 *60 * 60 * 1000)} }, // days * hours * minutes * seconds * milliseconds
+        ).sort({date: -1});
+        }
+        catch(err){
+            console.log(`incomeRepository.getIncomeDataForProvidedDays produced error: ${err}`);
+            return [];
+        }
+    }
+
+    async getIncomeData(userId, limit){
+        try{
+            console.log(`incomeRepository.getIncomeData is called`);
+            return await Income.find({userId, status: statusEnum.ACTIVE}).limit(limit);
+        }
+          catch(err){
+            console.log(`incomeRepository.getIncomeData produced error: ${err}`);
+            return [];
+        }
+    }
 }
 
 export default IncomeRepository;

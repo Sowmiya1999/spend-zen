@@ -44,6 +44,9 @@ export const DELETE_EXPENSE_FAILED_ERROR_MESSAGE = "Expense Deletion Failed";
 export const DOWNLOAD_EXPENSE_EXCEL_FAILED_ERROR_MESSAGE =
   "Expense Excel Download Failed";
 
+//getDashboardData
+export const DASHBOARD_DATA_FETCH_FAILED_ERROR_MESSAGE = "Dashboard Data Fetch Failed";
+
 // success codes
 export const SIGNUP_SUCCESS_MESSAGE = "Signup Successfully";
 
@@ -75,6 +78,8 @@ export const INCOME_EXCEL_WORKBOOK_NAME = "income_details.xlsx";
 export const INCOME_EXCEL_WORKSHEET_NAME = "Income";
 
 export const EXPENSE_EXCEL_WORKSHEET_NAME = "Expense";
+
+export const DASHBOARD_DATA_FETCHED_SUCCESS_MESSAGE = "Dashboard Data Fetched Successfully";
 
 
 

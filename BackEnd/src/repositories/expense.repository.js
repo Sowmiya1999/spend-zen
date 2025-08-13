@@ -38,6 +38,48 @@ class ExpenseRepository{
             return [];
         }
     }
+
+    async getAggregatedExpenseData(userId){
+        try{
+              console.log(`ExpenseRepository.getAggregatedExpenseData is called`);
+              return await Expense.aggregate([
+                {
+                    $match: { userId}
+                },
+                {
+                    $group: {_id: null, total: {$sum: "$amount"}}
+                }
+              ])
+        }
+         catch(err){
+            console.log(`ExpenseRepository.getAggregatedExpenseData produced error: ${err}`);
+            return [];
+        }
+    }
+    async getExpenseDataForProvidedDays(userId, noOfDays){
+              try{
+              console.log(`ExpenseRepository.getExpenseDataForProvidedDays is called`);
+              return await Expense.find({
+                userId,
+                date: {$gte: (Date.now() - noOfDays * 24 * 60 * 60 * 1000)}
+              }). sort({date: -1});
+        }
+         catch(err){
+            console.log(`ExpenseRepository.getExpenseDataForProvidedDays produced error: ${err}`);
+            return [];
+        }
+    }
+
+    async getExpenseData(userId, limit){
+        try{
+              console.log(`ExpenseRepository.getExpenseData is called`);
+              return await Expense.find({userId, status: statusEnum.ACTIVE}).limit(limit).lean();
+        }
+          catch(err){
+            console.log(`ExpenseRepository.getExpenseData produced error: ${err}`);
+            return [];
+        }
+    }
 }
 
 export default ExpenseRepository;
