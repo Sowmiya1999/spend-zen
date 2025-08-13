@@ -7,3 +7,10 @@ export const convertToExcel = async (jsonData, workSheetName, workBookName) =>{
   xlsx.writeFile(wb, workBookName); // saves the excel file in the provided name
   return;
 }
+
+export const calculateSum = async (dataArray) => {
+  console.log(`helper.calculateSum is called`);
+  return dataArray.reduce((sum, curr) => {
+    return sum +curr.amount;
+  }, 0);
+}
