@@ -23,6 +23,7 @@ class UserRepository{
 
  async loginUser(email,password){
     try{
+         console.log(`userRepository.loginUser is called with email: ${email}`);
         let user = await User.findOne({email});
         console.log(user);
         let isValidPassword = await user.comparePassword(password);
