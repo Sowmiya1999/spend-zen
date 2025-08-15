@@ -7,9 +7,11 @@ import Income from './pages/dashboard/Income';
 import Expense from './pages/dashboard/Expense';
 import Home from './pages/dashboard/Home';
 import TermsAndConditions from './components/inputs/TermsAndConditions';
+import UserProvider from './context/userContext';
 
 const App = () => {
   return (
+      <UserProvider>
     <div >
     <Router>
       <Routes>
@@ -24,6 +26,7 @@ const App = () => {
 
     </Router>
     </div>
+    </UserProvider>
   )
 }
 
