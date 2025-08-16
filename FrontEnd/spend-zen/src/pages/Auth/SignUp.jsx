@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AuthLayout from "../../components/layouts/AuthLayout";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../../components/inputs/Input";
 import ProfilePhotoSelector from "../../components/inputs/ProfilePhotoSelector";
 import { validateEmail } from "../../utils/helper";
+import axiosInstance from "../../utils/axios";
+import { API_PATHS } from "../../utils/apiPaths";
+import { UserContext } from "../../context/userContext";
 
 const SignUp = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -13,11 +16,12 @@ const SignUp = () => {
   const [termsAccepted, setTermsAccepted] = useState(false);
 
   const [error, setError] = useState("");
+  const {updateUser} = useContext(UserContext);
   
 
   const navigate = useNavigate();
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     let profileImageUrl = '';
      
@@ -42,7 +46,39 @@ const SignUp = () => {
               return
             }
           setError(null);
-      //  alert("signup")   
+           
+      try{
+          const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER,{
+            profilePic,
+            fullName,
+            email,
+            password,
+            termsAccepted
+          })
+                 const {token, user} = response.data;
+                 console.log(response.data);
+          if(token){
+      
+          localStorage.setItem("token", token);
+          updateUser(user);
+          navigate("/dashboard");
+          }
+          else{
+              navigate("/login");
+          }
+         
+        
+      } 
+      catch(err){
+        console.log("error here");
+        console.log(err);
+        if(err.response && err.response.data.message){
+          setError(err.response.data.message);
+        }
+        else{
+          setError("Something went wrong. Please try again later...")
+        }
+      } 
   };
   return (
     <AuthLayout>
