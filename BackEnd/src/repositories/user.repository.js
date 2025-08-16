@@ -11,12 +11,13 @@ class UserRepository{
 }
 
  async  createUser(createUserInput){
-    const {fullName, password, email, profileImageUrl} = createUserInput;
+    const {fullName, password, email, profileImageUrl, isTermsAccepted} = createUserInput;
     return await User.create({
         fullName,
         password,
         email,
-        profileImageUrl
+        profileImageUrl,
+        isTermsAccepted
     })
     
 }

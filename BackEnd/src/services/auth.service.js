@@ -20,7 +20,7 @@ class AuthService {
      generateJWTToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 };
-    signUpService = async (fullName, email, password, profileImageUrl) => {
+    signUpService = async (fullName, email, password, profileImageUrl, isTermsAccepted) => {
         try {
             const isUserExist = await this.userRepository.checkIsUserExistByEmail(email);
             if (isUserExist) {
@@ -32,6 +32,7 @@ class AuthService {
                 email,
                 password,
                 profileImageUrl,
+                isTermsAccepted
             });
 
           

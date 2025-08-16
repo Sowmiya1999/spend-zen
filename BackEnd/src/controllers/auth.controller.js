@@ -13,9 +13,9 @@ class AuthController {
         this.authService = new AuthService();
     }
   signUp = async (req, res) => {
-    const { fullName, email, password, profileImageUrl } = req.body;
+    const { fullName, email, password, profilePic,  termsAccepted } = req.body;
 
-    if (!fullName || !email || !password || !profileImageUrl) {
+    if (!fullName || !email || !password || !profilePic ) {
       console.log(`Not all necessary fields values aren't given`);
       return res.status(400).json({ message: INPUT_NOT_FOUND_ERROR_MESSAGE });
     }
@@ -25,7 +25,8 @@ class AuthController {
         fullName,
         email,
         password,
-        profileImageUrl
+        profilePic,
+        termsAccepted
       );
        return res
                 .status(201)
