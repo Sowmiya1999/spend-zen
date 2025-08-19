@@ -36,7 +36,12 @@ export const SIDE_MENU_DATA = [
     icon: LuHandCoins,
     path: ROUTE_PATH.EXPENSE
 },
-
+{
+    id: "04",
+    label: "LogOut",
+    icon: LuLogOut,
+    path: ROUTE_PATH.LOGIN
+}
 ];
 
 export const LOGOUT_DATA = {
