@@ -8,6 +8,7 @@ import Home from './pages/dashboard/Home';
 import TermsAndConditions from './components/inputs/TermsAndConditions';
 import UserProvider from './context/userContext';
 import Login from './pages/auth/Login';
+import { ROUTE_PATH } from './utils/data';
 
 const App = () => {
   return (
@@ -17,12 +18,12 @@ const App = () => {
       <UserProvider> 
       <Routes>
         <Route path='/' element={<Root/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/signUp' element={<SignUp/>}/>
-        <Route path='/dashboard' element={<Home/>}/>
-        <Route path='/income' element={<Income/>}/>
-        <Route path='/expense' element={<Expense/>}/>
-        <Route path='/termsAndConditions' element={<TermsAndConditions/>}/>
+        <Route path={ROUTE_PATH.LOGIN} element={<Login/>}/>
+        <Route path={ROUTE_PATH.SIGNUP} element={<SignUp/>}/>
+        <Route path={ROUTE_PATH.DASHBOARD} element={<Home/>}/>
+        <Route path={ROUTE_PATH.INCOME} element={<Income/>}/>
+        <Route path={ROUTE_PATH.EXPENSE} element={<Expense/>}/>
+        <Route path={ROUTE_PATH.TERMSANDCONDITION} element={<TermsAndConditions/>}/>
       </Routes>
 </UserProvider>
     </Router>
