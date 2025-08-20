@@ -3,6 +3,7 @@ import {
   LOGIN_FAILED_ERROR_MESSAGE,
   LOGIN_SUCCESS_MESSAGE,
   REGISTRATION_FAILED_ERROR_MESSAGE,
+  USER_DATA_FETCHED_SUCCESSFULLY,
   USER_FETCH_FAILED_ERROR_MESSAGE
 } from "../common/constants.js";
 import AuthService from "../services/auth.service.js";
@@ -13,9 +14,9 @@ class AuthController {
         this.authService = new AuthService();
     }
   signUp = async (req, res) => {
-    const { fullName, email, password, profilePic,  termsAccepted } = req.body;
+    const { fullName, email, password, profileImageUrl,  termsAccepted } = req.body;
 
-    if (!fullName || !email || !password || !profilePic ) {
+    if (!fullName || !email || !password  ) {
       console.log(`Not all necessary fields values aren't given`);
       return res.status(400).json({ message: INPUT_NOT_FOUND_ERROR_MESSAGE });
     }
@@ -25,7 +26,7 @@ class AuthController {
         fullName,
         email,
         password,
-        profilePic,
+        profileImageUrl,
         termsAccepted
       );
        return res

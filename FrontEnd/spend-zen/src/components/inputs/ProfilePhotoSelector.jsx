@@ -12,7 +12,7 @@ const ProfilePhotoSelector = ({image, setProfilePic}) => {
         if(file){
         const preview = URL.createObjectURL(file); // this creates a temp
         setPreviewUrl(preview);
-        setProfilePic(preview);
+        setProfilePic(file);
         }
         e.target.value='';
       

@@ -26,3 +26,10 @@
 .btn-primary{
   @apply bg-primary w-full rounded-sm  text-white font-medium text-sm mt-5 shadow-xs  p-[10px] my-4 hover:shadow-md shadow-slate-800;
 }
+.menuOption li{
+  @apply text-xl font-normal border-0 justify-center flex 
+}
+
+.menuOption li:hover{
+  @apply bg-blue-100 cursor-pointer text-primary
+}
