@@ -8,22 +8,26 @@ const Navbar = ({activeMenu}) =>{
     const {user} = useContext(UserContext)
     const [openSideMenu, setOpenSideMenu] = useState(false);
     return (
+
         <div>
-        <div className="flex bg-white-400 shadow-md border-b-1 border-gray-300 gap-5 h-20">
+        <div className="flex  bg-white-400 shadow-md border-b-1 border-gray-300 gap-5 h-20">
             <button className="block lg:hidden text-black" onClick={() => {setOpenSideMenu(!openSideMenu)}}>
             {
                 !openSideMenu &&
-               (<HiOutlineMenu className="text-2xl"/>)
+               (<HiOutlineMenu size={25} className=""/>)
             }
             </button>
-
-            <img  src={logoWithText} className="justify-center w-40 h-30"/>
-            <img/>
+           
+            <div className="flex flex-col justify-center">
+                  <img  src={logoWithText} className="w-40 h-30 "/>
+            </div>
+           
+            
                 </div>
                 <div className="">
                      {
                 openSideMenu && (
-                    <div className=" lg:hidden  bg-white w-xs ">
+                    <div className=" lg:hidden  bg-white fixed left-0 w-64 shadow-lg z-50">
                         <SideMenu activeMenu={activeMenu} setOpenSideMenu={setOpenSideMenu} openSideMenu={openSideMenu}></SideMenu>
                         </div>
                 )

@@ -3,6 +3,7 @@ import {
   LOGIN_FAILED_ERROR_MESSAGE,
   LOGIN_SUCCESS_MESSAGE,
   REGISTRATION_FAILED_ERROR_MESSAGE,
+  USER_DATA_FETCHED_SUCCESSFULLY,
   USER_FETCH_FAILED_ERROR_MESSAGE
 } from "../common/constants.js";
 import AuthService from "../services/auth.service.js";
