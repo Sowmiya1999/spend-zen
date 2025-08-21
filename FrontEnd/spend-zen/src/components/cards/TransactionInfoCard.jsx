@@ -9,11 +9,11 @@ const TransactionInfoCard = (
     }
 ) => {
     const getAmountStyles = () =>{
-        return type==="Income" ? "text-green-600" : "text-red-600";
+        return type==="Income" ? "text-green-600 bg-green-50" : "text-red-600 bg-red-50";
     }
     return (
         <div className="group relative flex items-center gap-4 mt-2 p-3 rounded-lg bg-gray-100 hover:bg-blue-100">
-            <div className={`w-12 h-12 text-xl rounded-full  flex justify-center items-center border-1 border-gray-400 bg-gray-200 ${getAmountStyles()}`}>
+            <div className={`w-12 h-12 text-xl rounded-full  flex justify-center items-center border-1 border-gray-400 bg-gray-200  ${getAmountStyles()}`}>
                 {
                     icon 
                     ?(<img src={icon} alt={title} className="w-6 h-6 "/>)
@@ -37,7 +37,7 @@ const TransactionInfoCard = (
                         : <LuTrendingDown/>}
                     </div>
                       {!hideDeleteBtn && (
-                        <button className=" text-red-600 opacity-0 group-hover:opacity-100 transition-all" ><LuTrash2 size={18}/></button>
+                        <button className=" text-gray-600 opacity-0 group-hover:opacity-100 transition-all py-1.5 hover:text-red-600" ><LuTrash2 size={18}/></button>
                     )}
                 </div>
             </div>

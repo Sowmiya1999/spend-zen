@@ -56,7 +56,7 @@ const SideMenu = ({ activeMenu, setOpenSideMenu, openSideMenu }) => {
             return(
                
                    
-            <button onClick={() => handleClick(item.path)} className={`w-full h-10 py-1 flex gap-10 text-[18px] cursor-pointer rounded-lg  ${activeMenu == item.label ? "text-white bg-primary" : "text-black bg-white hover:text-primary"} `} key={`menu_${index}` }>
+            <button onClick={() => handleClick(item.path)} className={`w-full h-10 py-1 flex gap-10 font-medium text-[18px] cursor-pointer rounded-lg  ${activeMenu == item.label ? "text-white bg-primary" : "text-black bg-white hover:text-primary"} `} key={`menu_${index}` }>
                  <Icon size={25} className="mx-5"/>  
                 {item.label} 
                 </button>
