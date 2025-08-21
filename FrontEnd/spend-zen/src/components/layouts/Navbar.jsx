@@ -11,7 +11,7 @@ const Navbar = ({activeMenu}) =>{
 
         <div>
         <div className="flex  bg-white-400 shadow-md border-b-1 border-gray-300 gap-5 h-20">
-            <button className="block lg:hidden text-black" onClick={() => {setOpenSideMenu(!openSideMenu)}}>
+            <button className="block text-black" onClick={() => {setOpenSideMenu(!openSideMenu)}}>
             {
                 !openSideMenu &&
                (<HiOutlineMenu size={25} className=""/>)
@@ -27,7 +27,7 @@ const Navbar = ({activeMenu}) =>{
                 <div className="">
                      {
                 openSideMenu && (
-                    <div className=" lg:hidden  bg-white fixed left-0 w-64 shadow-lg z-50">
+                    <div className=" bg-white fixed left-0 w-84 shadow-lg z-50">
                         <SideMenu activeMenu={activeMenu} setOpenSideMenu={setOpenSideMenu} openSideMenu={openSideMenu}></SideMenu>
                         </div>
                 )

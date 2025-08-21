@@ -25,7 +25,7 @@ const SideMenu = ({ activeMenu, setOpenSideMenu, openSideMenu }) => {
   };
 
   return (
-    <div className="lg:hidden shadow-lg min-h-screen">
+    <div className="shadow-lg min-h-screen px-3 mt-4">
           <div className="text-primary justify-end flex">
               <HiOutlineX  className="text-2xl left-10" onClick={()=> setOpenSideMenu(!openSideMenu)}/>
        </div>

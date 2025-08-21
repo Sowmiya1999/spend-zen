@@ -13,6 +13,8 @@ import {
 
 import {IoMdCard} from "react-icons/io";
 import { addThousandsSeperator } from '../../utils/helper';
+import { ROUTE_PATH } from '../../utils/data';
+import RecentTransactions from '../../components/dashboard/RecentTransactions';
 
 const Home = () => {
    UseUserAuth();
@@ -55,21 +57,30 @@ const Home = () => {
               color="bg-primary"
               />
 
+               <InfoCard
+              icon={<LuWalletMinimal/>}
+              label="Total Income"
+              value={addThousandsSeperator(dashboardData?.totalIncome || 0)}
+              color="bg-green-500"
+              />
+
+               <InfoCard
+              icon={<LuHandCoins/>}
+              label="Total Expense"
+              value={addThousandsSeperator(dashboardData?.totalExpense || 0)}
+              color="bg-red-500"
+              />
+
+          </div>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-6'>
+            <RecentTransactions
+            transactions={dashboardData?.recentTransactions}
+            onSeeMore={()=>navigate(ROUTE_PATH.EXPENSE)}
+            />
           </div>
 
       </div>
-       {/* <div className='flex flex-col items-center justify-center bg-blue-600 text-black'>
-
-        {console.log("d",dashboardData.totalBalance)}
-        totalBalance: {dashboardData.totalBalance}
-        <div>
-           totalExpense: {dashboardData.totalExpense}
-        </div>
-         <div>
-           totalIncome: {dashboardData.totalIncome}
-        </div>
-        
-     </div> */}
+    
     </DashboardLayout>
    
   )
