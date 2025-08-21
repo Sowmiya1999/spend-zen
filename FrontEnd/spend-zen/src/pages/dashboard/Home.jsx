@@ -5,6 +5,17 @@ import UseUserAuth from '../../components/hooks/UseUserAuth';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../utils/axios';
 import { API_PATHS } from '../../utils/apiPaths';
+import InfoCard from '../../components/cards/InfoCard';
+import {
+    LuHandCoins,
+    LuWalletMinimal
+} from "react-icons/lu";
+
+import {IoMdCard} from "react-icons/io";
+import { addThousandsSeperator } from '../../utils/helper';
+import { ROUTE_PATH } from '../../utils/data';
+import RecentTransactions from '../../components/dashboard/RecentTransactions';
+import FinancialOverView from '../../components/dashboard/FinancialOverview';
 
 const Home = () => {
    UseUserAuth();
@@ -38,18 +49,25 @@ const Home = () => {
   },[]);
   return (
     <DashboardLayout activeMenu="Dashboard">
-       <div className='flex flex-col items-center  justify-center bg-blue-600 text-black'>
+      <div className=''>
+         
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-6'>
+            <RecentTransactions
+            transactions={dashboardData?.recentTransactions}
+            onSeeMore={()=>navigate(ROUTE_PATH.EXPENSE)}
+            />
 
-        {console.log("d",dashboardData.totalBalance)}
-        totalBalance: {dashboardData.totalBalance}
-        <div>
-           totalExpense: {dashboardData.totalExpense}
-        </div>
-         <div>
-           totalIncome: {dashboardData.totalIncome}
-        </div>
-        
-     </div>
+                  <FinancialOverView
+          totalBalance={ dashboardData?.totalBalance}
+          totalIncome={dashboardData?.totalIncome}
+          totalExpense={dashboardData?.totalExpense}
+          />
+          </div>
+
+    
+
+      </div>
+    
     </DashboardLayout>
    
   )

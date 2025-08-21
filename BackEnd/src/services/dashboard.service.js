@@ -34,7 +34,7 @@ class DashboardService{
             ) // as push returns number as response cannot perform push here so we do it seperate
 
             console.log(`sorting transactions`)
-            lastTransactions.sort((a,b) => a.date - b.date);
+            lastTransactions.sort((a,b) => b.date - a.date);
 
             console.log(`populating response object`);
             return {

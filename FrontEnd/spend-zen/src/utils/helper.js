@@ -12,4 +12,16 @@ export const getInitials = (fullName) =>{
    return {intial:intial, color:color};
 }
 
+export const addThousandsSeperator = (amount) =>{
+  if(!amount || isNaN(amount)) return '0';
+  const regex=/\B(?=(\d{3})+(?!\d))/g;
+  const [integerPart, fraction] = amount.toString().split(".");
+  const formattedInteger = integerPart.replace(regex,',');
+
+  return fraction
+  ? `${formattedInteger}.${fraction}`
+  : formattedInteger;
+
+}
+
 
