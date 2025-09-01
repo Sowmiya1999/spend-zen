@@ -7,7 +7,8 @@ CartesianGrid,
 Tooltip,
 Legend,
 ResponsiveContainer,
-Cell
+Cell,
+Rectangle
 
 } from "recharts"
 import CustomToolTip from "./CustomToolTip";
@@ -15,7 +16,7 @@ import CustomToolTip from "./CustomToolTip";
 const CustomBarChart = ({data}) =>{
 
     const getBarColor = (index) => {
-        return index % 2 === 0 ? "#875cf5" : "#cfbefb";
+        return index % 2 === 0 ? "#3B82F6" : "#60A5FA";
     }
 
     const CustomToolTip = ({active,payload}) =>{
@@ -27,25 +28,33 @@ const CustomBarChart = ({data}) =>{
 
                     </p>
                     <p className="text-sm  text-gray-600">
-                       Amount: <Span className="text-sm font-medium text-gray-900">{payload[0].payload.amount}</Span> 
+                       Amount: <span className="text-sm font-medium text-gray-900">{payload[0].payload.amount}</span> 
 
                     </p>
 
                 </div>
             )
         }
+        return null;
     }
     return (
         <div className="bg-white mt-6">
-            <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={data}>
+            {console.log(data)}
+            <ResponsiveContainer width="80%" height={300}>
+                <BarChart data={data} >
                     <CartesianGrid stroke="none"/>
-                    <XAxis dataKey="month" tick={{fontSize:12, fill: "#555"}} stroke="none"/>
+                    <XAxis tick={{fontSize:12, fill: "#555"}} stroke="none"/>
                     <YAxis tick={{fontSize: 12, fill: "#555"}} stroke="none"/>
-                    <Tooltip content={CustomToolTip}/>
-                    <Bar dataKey="amount" fill="#FF8042" radius={[10,10,0,0]} activeDot={{r:8, fill:"yellow"}} activeStyle={{fill: "green"}}>
+                    <Tooltip  content={CustomToolTip}/>
+                    <Bar barSize={30} dataKey="amount" fill="#FF8042" radius={[5,5,0,0]}  activeDot={{r:8, fill:"yellow"}} activeStyle={{fill: "green"}} activeBar={(props) => (
+                        <Rectangle
+                        {...props}
+                        stroke="#333"
+                        strokeWidth={0.5}
+                        />
+                    )}>
                         {data.map((entry,index) => (
-                            <Cell key={index} fill={getBarColor(index)}></Cell>
+                            <Cell width={30} key={index} fill={getBarColor(index)}></Cell>
                         ))}
                     </Bar>
                 </BarChart>

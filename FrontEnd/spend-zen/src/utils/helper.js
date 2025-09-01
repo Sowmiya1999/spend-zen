@@ -25,9 +25,11 @@ export const addThousandsSeperator = (amount) => {
 };
 
 export const prepareExpenseBarChartData = (data = []) => {
+  console.log(data);
   const chartData = data.map((item) => ({
     category: item?.category,
     amount: item?.amount,
+    month: new Date(item?.date).getMonth()
   }));
   return chartData;
 };
