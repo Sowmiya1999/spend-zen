@@ -1,5 +1,19 @@
-const CustomLegend = () =>{
+const CustomLegend = ({payload}) =>{
 
+    return (
+        <div className="flex flex-wrap justify-center gap-2 pt-4 space-x-6">
+            {payload.map((entry, index)=> (
+                <div className="flex items-center space-x-2" key={`legend-${index}`}>
+                    <div className="w-2.5 h-2.5 rounded-full" style={{backgroundColor: entry.color}}>
+
+                    </div>
+                    <span className="text-sm font-medium text-gray-600">
+                        {entry.value}
+                    </span>
+                </div>
+            ))}
+        </div>
+    )
 }
 
 export default CustomLegend;
