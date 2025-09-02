@@ -33,3 +33,8 @@ export const prepareExpenseBarChartData = (data = []) => {
   }));
   return chartData;
 };
+
+export const getRandomColor = (index) => {
+  const hash = index.split("").reduce((accu,curr)=> accu + Math.pow(curr.charCodeAt(0),2),0);
+  return `hsl(${hash % 360}, 60%, 50%)`
+}

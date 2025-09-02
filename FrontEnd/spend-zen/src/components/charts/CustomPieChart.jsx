@@ -1,12 +1,12 @@
 import { IndianRupee } from "lucide-react";
 import {PieChart,Pie,Cell,Tooltip,ResponsiveContainer,Legend} from "recharts";
-import { addThousandsSeperator } from "../../utils/helper";
+import { addThousandsSeperator, getRandomColor } from "../../utils/helper";
 import CustomToolTip from "./CustomToolTip";
 import CustomLegend from "./CustomLegend";
 
 const CustomPieChart = ({data, label,totalAmount,colors,showTextAnchor}) =>{
     return (
-       <ResponsiveContainer width="100%" height={300}>
+       <ResponsiveContainer width="100%" height={300} >
         <PieChart>
             <Pie
             data={data}
@@ -19,7 +19,7 @@ const CustomPieChart = ({data, label,totalAmount,colors,showTextAnchor}) =>{
             labelLine={false}
             >
                 {data.map((entry,index)=>(
-                    <Cell key={`cell-${index}`} fill={colors[index % colors.length]}></Cell>
+                    <Cell key={`cell-${index}`} fill={colors ? colors[index % colors.length] : getRandomColor(entry.name.toString()) }></Cell>
                 ))}
             </Pie>
             <Tooltip content={CustomToolTip}/>

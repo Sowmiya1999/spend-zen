@@ -12,7 +12,7 @@ const TransactionInfoCard = (
         return type==="Income" ? "text-green-600 bg-green-50" : "text-red-600 bg-red-50";
     }
     return (
-        <div className="group relative flex items-center gap-4 mt-2 p-3 rounded-lg bg-gray-100 hover:bg-blue-100">
+        (title && <div className="group relative flex items-center gap-4 mt-2 p-3 rounded-lg bg-gray-100 hover:bg-blue-100">
             <div className={`w-12 h-12 text-xl rounded-full  flex justify-center items-center border-1 border-gray-400 bg-gray-200  ${getAmountStyles()}`}>
                 {
                     icon 
@@ -41,7 +41,8 @@ const TransactionInfoCard = (
                     )}
                 </div>
             </div>
-        </div>
+        </div>)
+
     )
 }
 

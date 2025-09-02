@@ -20,9 +20,7 @@ const Last30DaysExpenses = ({data}) =>{
                         </h5>
                        
                 </div>
-                 {/* <button className="card-btn">
-                    See All <LuArrowRight className="text-base"/>
-                </button> */}
+              
 
 
             </div>
