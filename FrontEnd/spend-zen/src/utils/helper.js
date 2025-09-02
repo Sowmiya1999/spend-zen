@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const validateEmail = (email) => {
   let regExForEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return regExForEmail.test(email);
@@ -33,6 +35,18 @@ export const prepareExpenseBarChartData = (data = []) => {
   }));
   return chartData;
 };
+
+export const prepareIncomeBarChartData = (data = []) =>{
+  const sortData = [...data].sort((a,b) => new Date(a.date) - new Date(b.date));
+
+  const chartData = sortData.map((item)=>({
+    month: moment.utc(item?.date).format("Do MMM"),
+    amount: item?.amount,
+    source: item?.source
+  }));
+
+  return chartData;
+}
 
 export const getRandomColor = (index) => {
   const hash = index.split("").reduce((accu,curr)=> accu + Math.pow(curr.charCodeAt(0),2),0);
