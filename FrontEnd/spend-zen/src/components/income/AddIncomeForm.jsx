@@ -24,6 +24,14 @@ const AddIncomeForm = ({onAddIncome}) =>{
               setError({"amount" : "Amount is not provided"});
             return;
         }
+        else if(!income.moneyType){
+              setError({"moneytype" : "MoneyType is not provided"});
+            return;
+        }
+        else if(!income.date){
+              setError({"date" : "Date is not provided"});
+            return;
+        }
         else{
             setError({});
         }

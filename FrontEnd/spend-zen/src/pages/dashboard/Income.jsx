@@ -51,6 +51,7 @@ const Income = () => {
     }
     finally{
       setLoading(false);
+      setOpenAddIncomeModel(false);
     }
 
   }
