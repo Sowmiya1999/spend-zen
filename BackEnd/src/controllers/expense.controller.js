@@ -19,8 +19,8 @@ class ExpenseController {
   addExpense = async (req, res) => {
     try {
       console.log(`ExpenseController.addExpense is called`);
-      const { category, icon, date, amount, note, cashCategory } = req.body;
-      if (!category || !date || !amount || !cashCategory) {
+      const { category, icon, date, amount, description, moneyType } = req.body;
+      if (!category || !date || !amount || !moneyType) {
         console.log(`expenseController.addExpense necessary data not found`);
         return res.status(400).json({ message: INPUT_NOT_FOUND_ERROR_MESSAGE });
       }
@@ -30,8 +30,8 @@ class ExpenseController {
         icon,
         date,
         amount,
-        note,
-        cashCategory
+        description,
+        moneyType
       );
       return res
         .status(200)

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { cashCategoryEnum, statusEnum } from "../common/enums.js";
+import { moneyTypeEnum, statusEnum } from "../common/enums.js";
 
 const ExpenseSchema = new mongoose.Schema({
     userId: {type:mongoose.Schema.ObjectId, required:true, ref: "User"},
@@ -7,8 +7,8 @@ const ExpenseSchema = new mongoose.Schema({
     category: {type:String, required:true},
     icon: {type:String},
     amount: {type: Number, required:true},
-    note: {type: String},
-    cashCategory: {type: String, required:true, enum: cashCategoryEnum}, // cash,bank
+    description: {type: String},
+    moneyType: {type: String, required:true, enum: moneyTypeEnum}, // cash,bank
     date: {type:Date, default: Date.now},
 },
 {

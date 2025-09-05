@@ -3,7 +3,8 @@ ACTIVE: "ACTIVE",
 DELETED: "DELETED"
 });
 
-export const cashCategoryEnum = Object.freeze({
+export const moneyTypeEnum = Object.freeze({
     CASH: "Cash",
     BANK: "Bank"
 })
+

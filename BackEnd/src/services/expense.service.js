@@ -8,7 +8,7 @@ class ExpenseService{
         this.expenseRepository = new ExpenseRepository();
     }
 
-    async addExpenseService(userId,category, icon, date, amount, note,cashCategory){
+    async addExpenseService(userId,category, icon, date, amount, description,moneyType){
         try{
             console.log(`ExpenseService.addExpenseService is called`);
             const newExpense = new Expense({
@@ -17,8 +17,8 @@ class ExpenseService{
                 icon,
                 date: new Date(date),
                 amount,
-                note,
-                cashCategory
+                description,
+                moneyType
             })
             return await this.expenseRepository.createOrUpdateExpense(newExpense)
         }
@@ -64,8 +64,8 @@ class ExpenseService{
             const expenseDataJson = expenseData.map((data)=>({
 
                 Category: data.category,
-                Note: data.note,
-                CashCategory: data.cashCategory,
+                Note: data.description,
+                MoneyType: data.moneyType,
                 Date: new Date(data.date),
                 Amount: data.amount,
 

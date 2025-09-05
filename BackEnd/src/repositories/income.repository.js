@@ -8,22 +8,22 @@ class IncomeRepository{
 
     }
 
-    async createOrUpdateIncome(userId,icon,source, amount, date, cashCategory, note){
+    async createOrUpdateIncome(userId,icon,source, amount, date, moneyType, description){
         try{
             const newIncome = new Income({
                 userId,
                 icon,
                 source,
                 amount,
-                cashCategory,
-                note,
+                moneyType,
+                description,
                 date: new Date(date)
             })
 
             return await newIncome.save();
         }
         catch(err){
-            console.log(`incomeRepository.createIncome Produced error: ${error}`);
+            console.log(`incomeRepository.createIncome Produced error: ${err}`);
             throw new Error(ADD_INCOME_FAILED_ERROR_MESSAGE)
         }
     }

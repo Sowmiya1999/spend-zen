@@ -3,6 +3,8 @@ import DashboardLayout from '../../components/layouts/DashboardLayout'
 import IncomeOverView from '../../components/income/IncomeOverview'
 import axiosInstance from '../../utils/axios';
 import { API_PATHS } from '../../utils/apiPaths';
+import Model from '../../components/layouts/Model';
+import AddIncomeForm from '../../components/income/AddIncomeForm';
 
 const Income = () => {
 
@@ -22,7 +24,7 @@ const Income = () => {
       const response = await axiosInstance.get(`${API_PATHS.INCOME.GET_ALL_INCOME}`);
 
       if(response && response.data){
-        setIncomeData(response.data || []);
+        setIncomeData(response.data.data || []);
       }
     }
     catch(error){
@@ -35,6 +37,22 @@ const Income = () => {
   }
 
   const handleAddIncome = async (income) => {
+    try{
+      if(loading) return;
+
+      setLoading(true);
+
+      const response = await axiosInstance.post(API_PATHS.INCOME.ADD_INCOME, income);
+
+      console.log(JSON.stringify(response));
+    }
+    catch(error){
+      console.log(`handleIncome produced error: ${error}`)
+    }
+    finally{
+      setLoading(false);
+      setOpenAddIncomeModel(false);
+    }
 
   }
 
@@ -66,6 +84,17 @@ const Income = () => {
         </div>
 
       </div>
+
+      <Model
+      isOpen={openAddIncomeModal}
+      onClose={()=> setOpenAddIncomeModel(false)}
+        title="Add Income"
+      
+      >
+        <AddIncomeForm
+        onAddIncome={handleAddIncome}
+        />
+      </Model>
     </div>
     
    </DashboardLayout>

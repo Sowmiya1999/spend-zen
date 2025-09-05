@@ -20,7 +20,7 @@ class IncomeController {
     try {
       console.log(`IncomeController.addIncome`);
       console.log(`IncomeController.addIncome is called`);
-      const { source, icon, amount, date, note, cashCategory } = req.body;
+      const { source, icon, amount, date, description, moneyType } = req.body;
 
       if (!source || !amount || !date) {
         return res.status(400).json({ message: INPUT_NOT_FOUND_ERROR_MESSAGE });
@@ -31,8 +31,8 @@ class IncomeController {
         icon,
         date,
         amount,
-        cashCategory,
-        note
+        moneyType,
+        description
       );
 
       return res

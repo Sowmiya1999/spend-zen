@@ -7,10 +7,10 @@ class IncomeService{
         this.incomeRepository = new IncomeRepository();
     }
 
-    async addIncomeService(userId, source, icon, date, amount, cashCategory, note ){
+    async addIncomeService(userId, source, icon, date, amount, moneyType, description ){
         try{
             console.log(`incomeService.addIncomeService is called`);
-            return await this.incomeRepository.createOrUpdateIncome(userId,icon,source,amount,date, cashCategory, note);
+            return await this.incomeRepository.createOrUpdateIncome(userId,icon,source,amount,date, moneyType, description);
         }
         catch(err){
             console.log(`IncomeService.addIncomeService produced error: ${err}`);
@@ -52,8 +52,8 @@ class IncomeService{
 
             let incomeDataMap = incomeData.map((data) => ({
                 Source: data.source,
-                Note: data.note,
-                CashCategory: data.cashCategory,
+                Note: data.description,
+                MoneyType: data.moneyType,
                 Amount: data.amount,
                 Date: data.date
             }));

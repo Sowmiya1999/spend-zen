@@ -31,18 +31,19 @@ export const prepareExpenseBarChartData = (data = []) => {
   const chartData = data.map((item) => ({
     category: item?.category,
     amount: item?.amount,
-    month: new Date(item?.date).getMonth()
+    month: moment.utc(item?.date).format("MMM")
   }));
   return chartData;
 };
 
 export const prepareIncomeBarChartData = (data = []) =>{
+  console.log(data);
   const sortData = [...data].sort((a,b) => new Date(a.date) - new Date(b.date));
 
   const chartData = sortData.map((item)=>({
-    month: moment.utc(item?.date).format("Do MMM"),
+     month: moment.utc(item?.date).format("MMM"),
     amount: item?.amount,
-    source: item?.source
+    category: item?.source
   }));
 
   return chartData;

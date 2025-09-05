@@ -19,7 +19,7 @@
 }
 
 .input-box{
-  @apply w-full flex justify-between gap-4 text-sm text-black bg-slate-300 rounded  px-4 py-3 mb-4 mt-3 border border-slate-200 outline-none;
+  @apply w-full flex justify-between gap-4 text-sm text-black bg-slate-200 rounded  px-4 py-3 mb-4 mt-3 border border-slate-300 outline-none;
 
 }
 
@@ -40,4 +40,12 @@
 
 .card-btn{
   @apply flex items-center gap-2 text-[13px] font-medium text-gray-700 hover:text-blue-500  hover:bg-blue-50 px-4 py-1.5 rounded-lg border border-gray-200/50 cursor-pointer;
+}
+
+.add-btn{
+  @apply flex justify-center items-center gap-1.5 text-sm md:text-sm font-medium text-blue-600 whitespace-nowrap bg-blue-50 border border-blue-100 px-2 py-1 rounded-md cursor-pointer;
+}
+
+.add-btn-fill{
+  @apply text-white bg-primary
 }
