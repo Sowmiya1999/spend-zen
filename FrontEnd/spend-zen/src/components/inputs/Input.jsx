@@ -2,7 +2,7 @@ import { Asterisk, IndianRupee } from 'lucide-react';
 import React, { useState } from 'react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
-const Input = ({value,label,type,placeholder,onChange, mandatoryField}) => {
+const Input = ({value,label,type,placeholder,onChange, mandatoryField, error}) => {
     const [showPassword, setShowPassword] = useState(false);
 
     const toggleShowPassword = () =>{
@@ -11,7 +11,7 @@ const Input = ({value,label,type,placeholder,onChange, mandatoryField}) => {
   return (
     <div className='w-full'>
         <label className='text-sm text-slate-800'>{label} {mandatoryField &&(<Asterisk size={11} className='inline-block text-red-600 align-text-top ml-0.5'/>) }</label>
-        <div className='input-box'>
+        <div className={`input-box  ${error ? "!border-red-500" : "!border-slate-300"}`}>
            {
               label === 'Amount' && (
                 <IndianRupee size={13} className='flex mt-1'/>
@@ -22,7 +22,7 @@ const Input = ({value,label,type,placeholder,onChange, mandatoryField}) => {
             placeholder={placeholder}
             value={value}
             onChange={(e) => onChange(e)}
-            className='w-full bg-transparent outline-none'
+            className={`w-full bg-transparent outline-none `}
             />
            
             {type === 'password' &&(
@@ -33,7 +33,9 @@ const Input = ({value,label,type,placeholder,onChange, mandatoryField}) => {
 }
             </>
             )}
+           
         </div>
+         {error && <p className='text-xs text-red-500 mt-0.5'>{error}</p>}
        
     </div>
   )

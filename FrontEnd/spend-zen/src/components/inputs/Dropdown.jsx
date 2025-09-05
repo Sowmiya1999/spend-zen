@@ -8,13 +8,13 @@ import {
 import { useState } from "react";
 import { LuArrowDownWideNarrow } from "react-icons/lu";
 
-const Dropdown = ({ dataList, label, placeholder, mandatoryField }) => {
+const Dropdown = ({ dataList, label, placeholder, mandatoryField, onChange, value }) => {
   const [isDropDownClicked, setIsDropDownClicked] = useState(false);
-  const [selectedDropDownValue, setSelectedDropdownValue] = useState("");
+  // const [selectedDropDownValue, setSelectedDropdownValue] = useState("");
 
   const handleCashTypeSelected = (name) => {
-    setSelectedDropdownValue(name);
     setIsDropDownClicked(false);
+    onChange(name);
   };
   return (
     <div className="">
@@ -34,7 +34,7 @@ const Dropdown = ({ dataList, label, placeholder, mandatoryField }) => {
             className=""
             disabled
             placeholder={placeholder}
-            value={selectedDropDownValue}
+            value={value || ""}
           />
           {isDropDownClicked ? (
             <ChevronUp

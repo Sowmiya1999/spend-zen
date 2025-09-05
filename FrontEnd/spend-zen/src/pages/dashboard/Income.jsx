@@ -37,6 +37,21 @@ const Income = () => {
   }
 
   const handleAddIncome = async (income) => {
+    try{
+      if(loading) return;
+
+      setLoading(true);
+
+      const response = await axiosInstance.post(API_PATHS.INCOME.ADD_INCOME, income);
+
+      console.log(JSON.stringify(response));
+    }
+    catch(error){
+      console.log(`handleIncome produced error: ${error}`)
+    }
+    finally{
+      setLoading(false);
+    }
 
   }
 

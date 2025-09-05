@@ -23,7 +23,7 @@ class IncomeRepository{
             return await newIncome.save();
         }
         catch(err){
-            console.log(`incomeRepository.createIncome Produced error: ${error}`);
+            console.log(`incomeRepository.createIncome Produced error: ${err}`);
             throw new Error(ADD_INCOME_FAILED_ERROR_MESSAGE)
         }
     }

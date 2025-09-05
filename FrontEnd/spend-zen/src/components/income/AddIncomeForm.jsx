@@ -2,6 +2,7 @@ import { useState } from "react";
 import Input from "../inputs/Input";
 import Dropdown from "../inputs/Dropdown";
 import { moneyTypeEnum } from "../../../../../BackEnd/src/common/enums";
+import EmojiPickerLayout from "../layouts/EmojiPickerLayout";
 
 const AddIncomeForm = ({onAddIncome}) =>{
     const [income, setIncome] = useState({
@@ -13,9 +14,31 @@ const AddIncomeForm = ({onAddIncome}) =>{
         moneyType:"",
 
     });
+    const [errors, setError] = useState({});
+    const validateForm = () =>{
+        if(!income.source){
+            setError({"source":"Income source is not provided"});
+            // return;
+        }
+        else if(!income.amount){
+              setError({"amount" : "Amount is not provided"});
+            return;
+        }
+        else{
+            setError({});
+        }
+
+        // setError(errors);
+        onAddIncome(income);
+
+    }
     const handleChange = (key,value) => setIncome({...income, [key]:value})
     return (
         <div className="">
+            <EmojiPickerLayout 
+            icon={income.icon}
+            onChange={(selectedIcon)=> handleChange("icon", selectedIcon)}/>
+
             <Input
             value={income.source}
             onChange={({target})=> handleChange("source", target.value)}
@@ -23,6 +46,7 @@ const AddIncomeForm = ({onAddIncome}) =>{
             placeholder="salary, etc.,"
             type="text"
             mandatoryField={true}
+            error={errors.source}
             />
               <Input
             value={income.description}
@@ -39,10 +63,11 @@ const AddIncomeForm = ({onAddIncome}) =>{
             placeholder="Enter the amount"
             type="number"
              mandatoryField={true}
+             error={errors.amount}
             />
              <Dropdown
-            value={income.amount}
-            onChange={({target})=> handleChange("moneyType", target.value)}
+            value={income.moneyType}
+            onChange={(value)=> handleChange("moneyType", value)}
             label="MoneyType"
             placeholder="select the MoneyType"
             type="text"
@@ -58,7 +83,7 @@ const AddIncomeForm = ({onAddIncome}) =>{
              mandatoryField={true}
             />
             <div className="flex justify-end mt-6">
-                <button type="button" className="add-btn add-btn-fill" onClick={() => onAddIncome(income)}>
+                <button type="button" className="add-btn add-btn-fill" onClick={() => validateForm(income)}>
                     Add Income
                 </button>
             </div>
