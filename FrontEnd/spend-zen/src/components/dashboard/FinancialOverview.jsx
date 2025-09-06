@@ -19,7 +19,7 @@ const COLORS = ["#0066ff", "#FA2C37", "#16a34a"];
     return(
         <div className="card">
             <div className="flex items-center justify-between">
-                <h5 className="text-lg font-medium">Financial Overview</h5>
+                <h5 className="card-title">Financial Overview</h5>
                {
                 isDropdownActive
                 ? <IoMdArrowDropup size={20} onClick={()=> setIsDropDownActive(!isDropdownActive)}/>

@@ -5,6 +5,8 @@ import axiosInstance from '../../utils/axios';
 import { API_PATHS } from '../../utils/apiPaths';
 import Model from '../../components/layouts/Model';
 import AddIncomeForm from '../../components/income/AddIncomeForm';
+import {toast} from 'react-toastify'
+import IncomeList from '../../components/income/IncomeList';
 
 const Income = () => {
 
@@ -44,14 +46,24 @@ const Income = () => {
 
       const response = await axiosInstance.post(API_PATHS.INCOME.ADD_INCOME, income);
 
-      console.log(JSON.stringify(response));
+      if(response && response.data && response.data.data){
+         fetchIncomeDetails()
+      }
+      else{
+        throw new Error("Add Income Failed. Try again later")
+      }
+       
+       
+     
     }
     catch(error){
       console.log(`handleIncome produced error: ${error}`)
+      toast.error("Add Income Failed. Try again later")
     }
     finally{
       setLoading(false);
       setOpenAddIncomeModel(false);
+      toast.success("Income Added Successfully")
     }
 
   }
@@ -84,6 +96,16 @@ const Income = () => {
         </div>
 
       </div>
+
+      <IncomeList
+      transactions={incomeData}
+      onDelete= {(id) => {
+        setOpenDeleteAlert({show:true, data:id});
+      }}
+      onDownload={handleDownloadIncomeDetails}
+      >
+
+        </IncomeList>
 
       <Model
       isOpen={openAddIncomeModal}

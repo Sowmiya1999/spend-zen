@@ -6,7 +6,7 @@ export const validateEmail = (email) => {
 };
 
 export const getInitials = (fullName) => {
-  const intialSplitted = fullName.trim().split(" ");
+  const intialSplitted = fullName?.trim().split(" ") || 'UN';
   const intial =
     (intialSplitted[0]?.[0].toUpperCase() || "") +
       (intialSplitted[1]?.[0].toUpperCase() || "") || "";
@@ -45,6 +45,8 @@ export const prepareIncomeBarChartData = (data = []) =>{
     amount: item?.amount,
     category: item?.source
   }));
+
+  console.log(JSON.stringify(chartData));
 
   return chartData;
 }

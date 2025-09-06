@@ -90,7 +90,7 @@ class IncomeRepository{
     async getIncomeData(userId, limit){
         try{
             console.log(`incomeRepository.getIncomeData is called`);
-            return await Income.find({userId, status: statusEnum.ACTIVE}).limit(limit);
+            return await Income.find({userId, status: statusEnum.ACTIVE}).limit(limit).sort({date:-1});
         }
           catch(err){
             console.log(`incomeRepository.getIncomeData produced error: ${err}`);
