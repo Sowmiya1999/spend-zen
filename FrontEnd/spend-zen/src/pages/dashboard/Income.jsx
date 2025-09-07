@@ -5,8 +5,9 @@ import axiosInstance from '../../utils/axios';
 import { API_PATHS } from '../../utils/apiPaths';
 import Model from '../../components/layouts/Model';
 import AddIncomeForm from '../../components/income/AddIncomeForm';
-import {toast} from 'react-toastify'
+import {toast} from 'react-hot-toast'
 import IncomeList from '../../components/income/IncomeList';
+import DeleteAlert from '../../components/inputs/DeleteAlert';
 
 const Income = () => {
 
@@ -69,7 +70,23 @@ const Income = () => {
   }
 
   const deleteIncome = async (id) => {
+    try{
+        const response = await axiosInstance.delete(API_PATHS.INCOME.DELETE_INCOME(id));
 
+        if(response && response?.data  && response?.data?.success){
+          fetchIncomeDetails();
+        }
+    }
+    catch(error){
+      console.error("The Income Deletion failed");
+       toast.error("The Income data deletion failed")
+    }
+    finally{
+      setLoading(false);
+      setOpenDeleteAlert({show:false, data:null});
+      
+          toast.success("The Income data deleted successfully");
+    }
   }
 
   const handleDownloadIncomeDetails = async () => {
@@ -116,6 +133,19 @@ const Income = () => {
         <AddIncomeForm
         onAddIncome={handleAddIncome}
         />
+      </Model>
+
+      <Model
+      isOpen={openDeleteAlert.show}
+      onClose={() => setOpenDeleteAlert({show:false, data:null})}
+      title="Delete Income"
+      >
+          <DeleteAlert
+          content="Are you sure you want to delete the income transaction data?"
+          onDelete={() => deleteIncome(openDeleteAlert.data)}
+           onClose={() => setOpenDeleteAlert({show:false, data:null})}
+          />
+
       </Model>
     </div>
     

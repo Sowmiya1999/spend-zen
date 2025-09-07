@@ -17,11 +17,12 @@ const IncomeList = ({transactions, onDelete, onDownload}) =>{
                     <TransactionInfoCard
                     key={entry?._id}
                     title={entry?.source}
-                    icone={entry?.icon}
+                    icon={entry?.icon}
                     date={moment.utc(entry?.date).format("Do MMM YYYY")}
                     amount={entry?.amount}
                     type="Income"
                     hideDeleteBtn={false}
+                    onDelete={()=>onDelete(entry?._id)}
                     />
                 ))}
             </div>

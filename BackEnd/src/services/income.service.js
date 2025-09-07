@@ -37,11 +37,11 @@ class IncomeService{
              console.log(`incomeService.deleteIncomeService is called`);
              const deleteResponse = await this.incomeRepository.deleteIncome(userId, incomeId);
              if(!deleteResponse) throw new Error(INCOME_DELETION_FAILED_ERROR_MESSAGE);
-             return;
+             return true;
         }
         catch(err){
              console.log(`incomeservice.deleteIncomeService produced error: ${err}`);
-            throw err;
+             return false;
         }
     }
 
