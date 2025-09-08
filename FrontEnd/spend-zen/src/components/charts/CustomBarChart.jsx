@@ -40,11 +40,12 @@ const CustomBarChart = ({data}) =>{
     }
     return (
         <div className="bg-white mt-6">
-            {console.log(data)}
+            {console.log("***")}
+            {console.log(JSON.stringify(data))}
             <ResponsiveContainer width="80%" height={300}>
                 <BarChart data={data} >
                     <CartesianGrid stroke="none"/>
-                    <XAxis dataKey="month" tick={{fontSize:12, fill: "#555"}} stroke="none"/>
+                    <XAxis tick={{fontSize:12, fill: "#555"}} stroke="none"/>
                     <YAxis tick={{fontSize: 12, fill: "#555"}} stroke="none"/>
                     <Tooltip  content={CustomToolTip}/>
                     <Bar barSize={30} dataKey="amount" fill="#FF8042" radius={[5,5,0,0]}  activeDot={{r:8, fill:"yellow"}} activeStyle={{fill: "green"}} activeBar={(props) => (

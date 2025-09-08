@@ -15,7 +15,7 @@ const Last30DaysExpenses = ({data}) =>{
     return (
         <div className="card col-span-1">
             <div className="flex items-center justify-between">
-                <div className="text-lg font-medium">
+                <div className="card-title">
                     <h5>Last 30 days Expenses
                         </h5>
                        

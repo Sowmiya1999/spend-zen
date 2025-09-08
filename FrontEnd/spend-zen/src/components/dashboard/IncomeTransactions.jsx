@@ -7,7 +7,7 @@ const IncomeTransactions = ({transactions, onSeeMore}) =>{
     return (
         <div className="card">
             <div className="flex items-center justify-between">
-                <h5 className="text-lg">Income</h5>
+                <h5 className="card-title">Income</h5>
                 <OnSeeAllButton onSeeMore={onSeeMore}/>
             </div>
 

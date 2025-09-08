@@ -5,7 +5,7 @@ import { addThousandsSeperator } from "../../utils/helper";
 
 const TransactionInfoCard = (
     {
-        title,icon,date,amount,type,hideDeleteBtn
+        title,icon,date,amount,type,hideDeleteBtn,onDelete
     }
 ) => {
     const getAmountStyles = () =>{
@@ -37,7 +37,7 @@ const TransactionInfoCard = (
                         : <LuTrendingDown/>}
                     </div>
                       {!hideDeleteBtn && (
-                        <button className=" text-gray-600 opacity-0 group-hover:opacity-100 transition-all py-1.5 hover:text-red-600" ><LuTrash2 size={18}/></button>
+                        <button className=" text-gray-600 opacity-0 group-hover:opacity-100 transition-all py-1.5 hover:text-red-600" onClick={onDelete}><LuTrash2 size={18}/></button>
                     )}
                 </div>
             </div>

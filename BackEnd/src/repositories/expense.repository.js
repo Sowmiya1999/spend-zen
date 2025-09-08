@@ -73,7 +73,7 @@ class ExpenseRepository{
     async getExpenseData(userId, limit){
         try{
               console.log(`ExpenseRepository.getExpenseData is called`);
-              return await Expense.find({userId, status: statusEnum.ACTIVE}).limit(limit).lean();
+              return await Expense.find({userId, status: statusEnum.ACTIVE}).limit(limit).sort({date:-1}).lean();
         }
           catch(err){
             console.log(`ExpenseRepository.getExpenseData produced error: ${err}`);

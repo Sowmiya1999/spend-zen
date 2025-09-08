@@ -10,7 +10,6 @@ import { LuArrowDownWideNarrow } from "react-icons/lu";
 
 const Dropdown = ({ dataList, label, placeholder, mandatoryField, onChange, value }) => {
   const [isDropDownClicked, setIsDropDownClicked] = useState(false);
-  // const [selectedDropDownValue, setSelectedDropdownValue] = useState("");
 
   const handleCashTypeSelected = (name) => {
     setIsDropDownClicked(false);
@@ -28,13 +27,13 @@ const Dropdown = ({ dataList, label, placeholder, mandatoryField, onChange, valu
         )}
       </label>
 
-      <div className="bg-red-350 relative mt-3 mb-4">
-        <div className="input-box flex items-center justify-between">
+      <div className="relative mt-3 mb-4">
+        <div className="input-box flex items-center justify-between"  onClick={() => setIsDropDownClicked(!isDropDownClicked)}>
           <input
-            className=""
-            disabled
+            className="cursor-pointer !outline-none caret-transparent"
             placeholder={placeholder}
             value={value || ""}
+            
           />
           {isDropDownClicked ? (
             <ChevronUp

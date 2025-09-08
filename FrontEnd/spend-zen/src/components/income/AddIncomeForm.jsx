@@ -36,7 +36,7 @@ const AddIncomeForm = ({onAddIncome}) =>{
             setError({});
         }
 
-        // setError(errors);
+      
         onAddIncome(income);
 
     }
@@ -51,10 +51,11 @@ const AddIncomeForm = ({onAddIncome}) =>{
             value={income.source}
             onChange={({target})=> handleChange("source", target.value)}
             label="Income Source"
-            placeholder="salary, etc.,"
+            placeholder="salary, etc., max 30 char.,"
             type="text"
             mandatoryField={true}
             error={errors.source}
+            length={30}
             />
               <Input
             value={income.description}

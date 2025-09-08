@@ -6,7 +6,7 @@ const ExpenseTransactions = ({transactions, onSeeMore}) =>{
     return (
         <div className="card">
             <div className="flex items-center justify-between">
-                <h5 className="text-lg font-medium">
+                <h5 className="card-title">
                      Expenses
                 </h5>
                  

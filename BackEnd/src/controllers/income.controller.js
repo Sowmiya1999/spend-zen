@@ -68,8 +68,8 @@ class IncomeController {
     try {
       console.log(`IncomeController.deleteIncome`);
       console.log(`IncomeController.deleteIncome is called`);
-      await this.incomeService.deleteIncomeService(req.userId, req.params.id);
-      return res.status(200).json({ message: INCOME_DELETED_SUCCESS_MESSAGE });
+      const response = await this.incomeService.deleteIncomeService(req.userId, req.params.id);
+      return res.status(200).json({ message: INCOME_DELETED_SUCCESS_MESSAGE, success: response});
     } catch (err) {
       console.log(`IncomeController.deleteIncome produced error: ${err}`);
       return res

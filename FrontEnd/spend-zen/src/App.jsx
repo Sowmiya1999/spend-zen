@@ -9,11 +9,14 @@ import TermsAndConditions from './components/inputs/TermsAndConditions';
 import UserProvider from './context/userContext';
 import Login from './pages/auth/Login';
 import { ROUTE_PATH } from './utils/data';
+import {Toaster} from 'react-hot-toast';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   return (
       
     <div >
+
     <Router>
       <UserProvider> 
       <Routes>
@@ -27,7 +30,17 @@ const App = () => {
       </Routes>
 </UserProvider>
     </Router>
+     <Toaster
+    toastOptions={
+      {
+        className:"",
+        style: {
+          fontSize:'13px'
+        }
+      }
+    }/>
     </div>
+   
   )
 }
 

@@ -18,7 +18,7 @@ class AuthService {
     }
 
      generateJWTToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "24h" });
 };
     signUpService = async (fullName, email, password, profileImageUrl, isTermsAccepted) => {
         try {

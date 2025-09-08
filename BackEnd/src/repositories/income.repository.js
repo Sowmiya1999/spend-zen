@@ -42,7 +42,7 @@ class IncomeRepository{
     async deleteIncome(userId, incomeId){
         try{
              console.log(`incomeRepository.deleteIncome is called for userId: ${userId } & incomeId: ${incomeId}`);
-             const deleteResponse = await  Income.deleteOne({_id: incomeId});
+             const deleteResponse = await  Income.updateOne({_id: incomeId},{status:statusEnum.DELETED});
 
              if(deleteResponse.deletedCount == 0){
                 console.log(`incomeRepository.findAllActiveIncome failed to delete the document with id : ${incomeId}`);
@@ -90,7 +90,7 @@ class IncomeRepository{
     async getIncomeData(userId, limit){
         try{
             console.log(`incomeRepository.getIncomeData is called`);
-            return await Income.find({userId, status: statusEnum.ACTIVE}).limit(limit);
+            return await Income.find({userId, status: statusEnum.ACTIVE}).limit(limit).sort({date:-1});
         }
           catch(err){
             console.log(`incomeRepository.getIncomeData produced error: ${err}`);
