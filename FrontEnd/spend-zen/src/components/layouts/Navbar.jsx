@@ -10,7 +10,7 @@ const Navbar = ({activeMenu}) =>{
     return (
 
         <div>
-        <div className="flex  bg-white-400 shadow-md border-b-1 border-gray-300 gap-5 h-20">
+        <div className="flex  bg-white-400  gap-5 h-20">
             <button className="block text-black" onClick={() => {setOpenSideMenu(!openSideMenu)}}>
             {
                 !openSideMenu &&
