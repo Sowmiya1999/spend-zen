@@ -55,7 +55,7 @@ export const prepareExpenseOverviewChartData = (data=[]) => {
 
    const sortData = [...data].sort((a,b) => new Date(a.date) - new Date(b.date));
    let chartData = sortData?.map((item)=> ({
-         month: moment.utc(item?.date).format("MMM"),
+         month: moment.utc(item?.date).format("Do MMM"),
     amount: item?.amount,
     category: item?.category
    }))

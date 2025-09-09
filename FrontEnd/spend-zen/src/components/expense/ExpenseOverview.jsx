@@ -27,7 +27,7 @@ const ExpenseOverview = ({transactions, onExpenseIncome}) =>{
                 </div>
 
                 <div className="">
-                  <button className="add-btn">
+                  <button className="add-btn" onClick={onExpenseIncome}>
                     <LuPlus className="text-lg"/>
                     Add Expense
                 </button>
