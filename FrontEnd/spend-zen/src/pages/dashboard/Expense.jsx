@@ -8,6 +8,7 @@ import ExpenseOverview from "../../components/expense/ExpenseOverview";
 import Model from "../../components/layouts/Model";
 import AddExpenseForm from "../../components/expense/AddExpenseForm";
 import ExpenseList from "../../components/expense/ExpenseList"
+import DeleteAlert from "../../components/inputs/DeleteAlert";
 
 const Expense = () => {
   UseUserAuth();
@@ -49,12 +50,12 @@ const Expense = () => {
       if (loading) return;
       setLoading(true);
 
-      const response = await axiosInstance.post(API_PATHS.EXPENSE.ADD_EXPENSE, {
-        expense,
-      });
+      const response = await axiosInstance.post(API_PATHS.EXPENSE.ADD_EXPENSE, 
+        expense);
 
       if (response && response?.data && response?.data?.data) {
         fetchExpenseDetails();
+        toast.success("Expense Added Successfully");
       }
     } catch (err) {
       console.error(`handleAddExpense produced error: ${err}`);
@@ -62,9 +63,33 @@ const Expense = () => {
     } finally {
       setLoading(false);
       setOpenAddExpenseModel(false);
-      toast.success("Expense Added Successfully");
+
     }
   };
+
+  const deleteExpense = async (id) =>{
+    try{
+      if(loading) return;
+
+      setLoading(true);
+
+      const response = await axiosInstance.delete(API_PATHS.EXPENSE.DELETE_EXPENSE(id));
+
+      if(response){
+        toast.success("Expense deleted successfully");
+        fetchExpenseDetails();
+      }
+      
+    }
+    catch(err){
+      console.error(`Error deleting the expense record`);
+       toast.success("Expense deletion failed");
+    }
+    finally{
+      setLoading(false);
+      setOpenDeleteAlert({show:false, data:null});
+    }
+  }
 
   useEffect(() => {
     fetchExpenseDetails();
@@ -93,7 +118,25 @@ const Expense = () => {
             />
           </div>
         </Model>
-       <ExpenseList/>
+        
+           <ExpenseList
+       transactions={expenseData}
+       onDelete={(id) => setOpenDeleteAlert({show:true, data:id})}
+       />
+
+       <Model
+       isOpen={openDeleteAlert.show}
+       onClose={() => setOpenDeleteAlert({ show: false, data: null })}
+       title={"Delete Expense"}
+       >
+         <DeleteAlert
+            content="Are you sure you want to delete the income transaction data?"
+            onDelete={() => deleteExpense(openDeleteAlert.data)}
+            onClose={() => setOpenDeleteAlert({ show: false, data: null })}
+          />
+       </Model>
+      
+      
       </div>
     </DashboardLayout>
   );

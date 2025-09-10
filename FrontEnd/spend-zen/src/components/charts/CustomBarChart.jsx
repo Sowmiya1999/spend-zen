@@ -32,6 +32,9 @@ const CustomBarChart = ({data}) =>{
                        Amount: <span className="text-sm font-medium text-gray-900">{payload[0].payload.amount}</span> 
 
                     </p>
+                     <p className="text-sm text-gray-600">
+                on {payload[0].payload.month}
+            </p>
 
                 </div>
             )

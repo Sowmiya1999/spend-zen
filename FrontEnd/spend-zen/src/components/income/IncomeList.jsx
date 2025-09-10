@@ -12,7 +12,7 @@ const IncomeList = ({transactions, onDelete, onDownload}) =>{
                 <button className="card-btn" onClick={onDownload}><Download className={``} size={20} /></button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
                 {transactions?.map((entry,index)=>(
                     <TransactionInfoCard
                     key={entry?._id}
