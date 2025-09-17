@@ -91,6 +91,36 @@ const Expense = () => {
     }
   }
 
+  const handleExpenseExcelDownload = async (fileName) =>{
+
+    try{
+       if(loading) return;
+       setLoading(true);
+
+       const response = await axiosInstance.get(API_PATHS.EXPENSE.DOWNLOAD_EXPENSE,{responseType: "blob"});// tells axios top trat the response as binary data
+
+       const url = window.URL.createObjectURL(new Blob([response.data])); // creates temprory local url
+       const link = document.createElement("a");// creates a hidden anchor tag
+       link.href = url; // assignsing the blob url
+       link.setAttribute("download", `${fileName}.xlsx`) // points the browser to donload it instead of opening it
+     
+       document.body.appendChild(link); // appends anchor tag to the DOM
+       link.click(); // trigger link click event
+       link.parentNode.removeChild(link); // removing link for cleanup
+       window.URL.revokeObjectURL(url); // revoke temp blob url memory
+      toast.success("Expense Downloaded Successfully");
+    
+    }
+    catch(err){
+      console.error(`handleExpenseExcelDownload produced error: ${err}`);
+      toast.error("Expense Download failed")
+    }
+    finally{
+      setLoading(false);
+    }
+
+  }
+
   useEffect(() => {
     fetchExpenseDetails();
     return () => {};
@@ -122,6 +152,7 @@ const Expense = () => {
            <ExpenseList
        transactions={expenseData}
        onDelete={(id) => setOpenDeleteAlert({show:true, data:id})}
+       onDownload={(fileName) => handleExpenseExcelDownload(fileName)}
        />
 
        <Model

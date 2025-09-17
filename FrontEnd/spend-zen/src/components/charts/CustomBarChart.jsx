@@ -13,6 +13,7 @@ Rectangle
 } from "recharts"
 import CustomToolTip from "./CustomToolTip";
 import moment from "moment";
+import { AlignCenter } from "lucide-react";
 
 const CustomBarChart = ({data}) =>{
     console.log(JSON.stringify(data))
@@ -32,9 +33,9 @@ const CustomBarChart = ({data}) =>{
                        Amount: <span className="text-sm font-medium text-gray-900">{payload[0].payload.amount}</span> 
 
                     </p>
-                     <p className="text-sm text-gray-600">
+                     {/* <p className="text-sm text-gray-600">
                 on {payload[0].payload.month}
-            </p>
+            </p> */}
 
                 </div>
             )
@@ -47,7 +48,7 @@ const CustomBarChart = ({data}) =>{
             <ResponsiveContainer width="80%" height={300}>
                 <BarChart data={data} >
                     <CartesianGrid stroke="none"/>
-                    <XAxis tick={{fontSize:12, fill: "#555"}} stroke="none"/>
+                    <XAxis dataKey="month" tick={{fontSize:12, fill: "#555"}} stroke="none"/>
                     <YAxis tick={{fontSize: 12, fill: "#555"}} stroke="none"/>
                     <Tooltip  content={CustomToolTip}/>
                     <Bar barSize={30} dataKey="amount" fill="#FF8042" radius={[5,5,0,0]}  activeDot={{r:8, fill:"yellow"}} activeStyle={{fill: "green"}} activeBar={(props) => (

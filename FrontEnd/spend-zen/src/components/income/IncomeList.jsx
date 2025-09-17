@@ -9,7 +9,7 @@ const IncomeList = ({transactions, onDelete, onDownload}) =>{
             <div className="flex items-center justify-between">
                 <h5 className="card-title">Income Sources</h5>
 
-                <button className="card-btn" onClick={onDownload}><Download className={``} size={20} /></button>
+                <button className="card-btn" onClick={() => onDownload("income_details")}><Download className={``} size={20} /><span className="font-medium">Download</span></button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">

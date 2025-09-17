@@ -85,7 +85,33 @@ const Income = () => {
     }
   };
 
-  const handleDownloadIncomeDetails = async () => {};
+  const handleDownloadIncomeDetails = async (fileName) => {
+    try{
+           if(loading) return;
+           setLoading(true);
+    
+           const response = await axiosInstance.get(API_PATHS.INCOME.DOWNLOAD_INCOME,{responseType: "blob"});// tells axios top trat the response as binary data
+    
+           const url = window.URL.createObjectURL(new Blob([response.data])); // creates temprory local url
+           const link = document.createElement("a");// creates a hidden anchor tag
+           link.href = url; // assignsing the blob url
+           link.setAttribute("download", `${fileName}.xlsx`) // points the browser to donload it instead of opening it
+         
+           document.body.appendChild(link); // appends anchor tag to the DOM
+           link.click(); // trigger link click event
+           link.parentNode.removeChild(link); // removing link for cleanup
+           window.URL.revokeObjectURL(url); // revoke temp blob url memory
+          toast.success("Income Downloaded Successfully");
+        
+        }
+        catch(err){
+          console.error(`handleDownloadIncomeDetails produced error: ${err}`);
+          toast.error("Income Download failed")
+        }
+        finally{
+          setLoading(false);
+        }
+  };
 
   useEffect(() => {
     fetchIncomeDetails();
@@ -109,7 +135,7 @@ const Income = () => {
           onDelete={(id) => {
             setOpenDeleteAlert({ show: true, data: id });
           }}
-          onDownload={handleDownloadIncomeDetails}
+          onDownload={(fileName) => (handleDownloadIncomeDetails(fileName))}
         ></IncomeList>
 
         <Model
