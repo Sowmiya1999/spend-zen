@@ -8,7 +8,7 @@ import {
 import { useState } from "react";
 import { LuArrowDownWideNarrow } from "react-icons/lu";
 
-const Dropdown = ({ dataList, label, placeholder, mandatoryField, onChange, value }) => {
+const Dropdown = ({ dataList, label, placeholder, mandatoryField, onChange, value, error }) => {
   const [isDropDownClicked, setIsDropDownClicked] = useState(false);
 
   const handleCashTypeSelected = (name) => {
@@ -66,6 +66,7 @@ const Dropdown = ({ dataList, label, placeholder, mandatoryField, onChange, valu
         )}
 
       </div>
+      {error && (<p className="">{error}</p>) }
     </div>
   );
 };

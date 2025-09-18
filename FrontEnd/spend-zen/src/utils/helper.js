@@ -27,21 +27,23 @@ export const addThousandsSeperator = (amount) => {
 };
 
 export const prepareExpenseBarChartData = (data = []) => {
-  console.log(data);
-  const chartData = data.map((item) => ({
+
+  const sortedData = [...data].sort((a,b) => new Date(a.date) - new Date(b.date))
+
+  const chartData = sortedData.map((item) => ({
     category: item?.category,
     amount: item?.amount,
-    month: moment.utc(item?.date).format("MMM")
+    month: moment.utc(item?.date).format("Do MMM")
   }));
   return chartData;
 };
 
 export const prepareIncomeBarChartData = (data = []) =>{
-  console.log(data);
+
   const sortData = [...data].sort((a,b) => new Date(a.date) - new Date(b.date));
 
   const chartData = sortData.map((item)=>({
-     month: moment.utc(item?.date).format("MMM"),
+     month: moment.utc(item?.date).format("Do MMM"),
     amount: item?.amount,
     category: item?.source
   }));
@@ -49,6 +51,17 @@ export const prepareIncomeBarChartData = (data = []) =>{
   console.log(JSON.stringify(chartData));
 
   return chartData;
+}
+
+export const prepareExpenseOverviewChartData = (data=[]) => {
+
+   const sortData = [...data].sort((a,b) => new Date(a.date) - new Date(b.date));
+   let chartData = sortData?.map((item)=> ({
+         month: moment.utc(item?.date).format("Do MMM"),
+    amount: item?.amount,
+    category: item?.category
+   }))
+   return chartData;
 }
 
 export const getRandomColor = (index) => {

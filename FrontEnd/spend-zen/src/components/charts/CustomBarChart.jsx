@@ -13,9 +13,10 @@ Rectangle
 } from "recharts"
 import CustomToolTip from "./CustomToolTip";
 import moment from "moment";
+import { AlignCenter } from "lucide-react";
 
 const CustomBarChart = ({data}) =>{
-
+    console.log(JSON.stringify(data))
     const getBarColor = (index) => {
         return index % 2 === 0 ? "#3B82F6" : "#60A5FA";
     }
@@ -32,6 +33,9 @@ const CustomBarChart = ({data}) =>{
                        Amount: <span className="text-sm font-medium text-gray-900">{payload[0].payload.amount}</span> 
 
                     </p>
+                     {/* <p className="text-sm text-gray-600">
+                on {payload[0].payload.month}
+            </p> */}
 
                 </div>
             )
@@ -40,8 +44,7 @@ const CustomBarChart = ({data}) =>{
     }
     return (
         <div className="bg-white mt-6">
-            {console.log("***")}
-            {console.log(JSON.stringify(data))}
+
             <ResponsiveContainer width="80%" height={300}>
                 <BarChart data={data} >
                     <CartesianGrid stroke="none"/>

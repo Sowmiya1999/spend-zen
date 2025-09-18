@@ -1,42 +1,41 @@
-import {LuPlus} from "react-icons/lu";
+import { LuPlus } from "react-icons/lu";
 import CustomBarChart from "../charts/CustomBarChart";
 import { useEffect, useState } from "react";
 import { prepareIncomeBarChartData } from "../../utils/helper";
+import DisplayCardLayout from "../layouts/DisplayCardLayout";
 
-const IncomeOverView = ({transactions ,onAddIncome}) =>{
-    const [chartData, setChartData] = useState([]);
+const IncomeOverView = ({ transactions, onAddIncome }) => {
+  const [chartData, setChartData] = useState([]);
 
-    useEffect(()=>{
-        const result = prepareIncomeBarChartData(transactions);
-        setChartData(result);
+  useEffect(() => {
+    const result = prepareIncomeBarChartData(transactions);
+    setChartData(result);
 
-        return () => {};
-    },[transactions]);
-    return(
-        <div className="card">
-            <div className="flex  items-center justify-between">
-                <div className="">
-                    <h5 className="card-title">
-                        Income Overview
-                    </h5>
-                    <p className="text-sm text-gray-500 mt-0.5">
-                       Follow your earnings journey and see how your income grows.
-                    </p>
-                </div>
-
-                <button className="add-btn" onClick={onAddIncome}>
-                    <LuPlus className=" text-lg"/>
-                    Add Income
-                </button>
-            </div>
-
-            <div className="mt-10">
-                <CustomBarChart
-                data={chartData}
-                />
-            </div>
+    return () => {};
+  }, [transactions]);
+  return (
+    <div className="card">
+      <div className="flex  items-center justify-between">
+        <div className="">
+          <h5 className="card-title">Income Overview</h5>
+          <p className="text-sm text-gray-500 mt-0.5">
+            Follow your earnings journey and see how your income grows.
+          </p>
         </div>
-    )
-}
+
+        <button className="add-btn" onClick={onAddIncome}>
+          <LuPlus className=" text-lg" />
+          Add Income
+        </button>
+      </div>
+
+      {chartData.length > 0 ? (
+        <CustomBarChart data={chartData} />
+      ) : (
+        <DisplayCardLayout message="No Income Available" />
+      )}
+    </div>
+  );
+};
 
 export default IncomeOverView;
