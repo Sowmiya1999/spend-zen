@@ -20,12 +20,14 @@ const SideMenu = ({ activeMenu, setOpenSideMenu, openSideMenu }) => {
 
   const handleLogOut = () => {
     localStorage.clear();
+    sessionStorage.clear();
     clearUser();
-    navigate(ROUTE_PATH.LOGIN);
+    window.location.replace(ROUTE_PATH.LOGIN)
+    // navigate(ROUTE_PATH.LOGIN, {replace:true});
   };
 
   return (
-    <div className="shadow-lg min-h-screen px-3 mt-4">
+    <div className="shadow-lg min-h-screen px-3 mt-4 bg-transparent">
           <div className="text-primary justify-end flex">
               <HiOutlineX  className="text-2xl left-10" onClick={()=> setOpenSideMenu(!openSideMenu)}/>
        </div>
